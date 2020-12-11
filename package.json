@@ -1,0 +1,26 @@
+{
+  "name": "hostel-registration-system",
+  "version": "1.0.0",
+  "description": "Hostel Registration System for University of Jaffna",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rifathm/hostel-registration-system.git"
+  },
+  "author": "Rifathm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rifathm/hostel-registration-system/issues"
+  },
+  "homepage": "https://github.com/rifathm/hostel-registration-system#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.5",
+    "nodemon": "^2.0.6"
+  }
+}
