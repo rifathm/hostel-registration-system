@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 
 //routes
 const student = require("./routes/student");
-const user = require("./routes/user");
+const signin = require("./routes/signin");
+const hostel = require("./routes/hostel");
 
 dotenv.config();
 const app = express();
@@ -27,4 +28,5 @@ mongoose
   });
 
 app.use("/students", student);
-app.use("/users", user);
+app.use("/user", signin);
+app.use("/hostel", hostel);
