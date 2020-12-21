@@ -2,6 +2,23 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
+    nic: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    regNo: {
+      type: String,
+      required: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+    },
+
     fullName: {
       type: String,
       required: true,
@@ -17,21 +34,9 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    nic: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-
     sex: {
       type: String,
       required: true,
-    },
-
-    email: {
-      type: String,
-      required: true,
-      lowercase: true,
     },
 
     contactNo: {
@@ -57,12 +62,6 @@ const schema = mongoose.Schema(
     dsDivision: {
       type: String,
       required: true,
-    },
-
-    regNo: {
-      type: String,
-      required: true,
-      unique: true,
     },
 
     faculty: {
@@ -105,10 +104,10 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
+    // isVerified: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   {
     timestamp: true,
@@ -116,5 +115,4 @@ const schema = mongoose.Schema(
   }
 );
 
-const Student = mongoose.model("Student", schema);
-module.exports = Student;
+module.exports = mongoose.model("Student", schema);
