@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
+    _id: {
+      type: String,
+    },
     nic: {
       type: String,
       required: true,
@@ -11,12 +14,14 @@ const schema = mongoose.Schema(
     regNo: {
       type: String,
       required: true,
+      unique: true,
     },
 
     email: {
       type: String,
       required: true,
       lowercase: true,
+      unique: true,
     },
 
     fullName: {
@@ -104,14 +109,16 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    // isVerified: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
-    timestamp: true,
-    default: Date.now,
+    date: {
+      type: Date,
+      default: Date.now,
+    },
   }
 );
 

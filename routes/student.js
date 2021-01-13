@@ -1,4 +1,8 @@
 const express = require("express");
+const {
+  studentValidator,
+  studentValidationResult,
+} = require("../Validators/studentValidator");
 
 const {
   createStudent,
@@ -10,8 +14,8 @@ const {
 const router = express.Router();
 
 router.get("/", getStudents);
-router.post("/", createStudent);
-router.delete("/:id", deleteStudent);
+router.post("/", studentValidator, studentValidationResult, createStudent);
+router.delete(":id", deleteStudent);
 router.put("/:id", updateStudent);
 
 module.exports = router;
