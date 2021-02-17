@@ -16,9 +16,5 @@ exports.hostelValidator = [
 
   check("location").trim().not().isEmpty().withMessage("Location is required"),
 
-  check("wardenName")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Warden Name is required"),
+  check("warden").trim().not().isEmpty().withMessage("Warden Name is required"),
 ];

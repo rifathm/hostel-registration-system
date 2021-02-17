@@ -10,15 +10,21 @@ exports.userValidationResult = (req, res, next) => {
 };
 
 exports.userValidator = [
-  check("name")
+  check("firstName")
     .trim()
     .not()
     .isEmpty()
-    .withMessage("Name is required")
+    .withMessage(" f Name is required")
     .isLength({ min: 4, max: 30 })
-    .withMessage("Name must be 3 to 20 characters length"),
+    .withMessage("First Name must be 3 to 20 characters length"),
 
-  check("role").trim().not().isEmpty().withMessage("Role is required"),
+  check("lastName")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage(" l Name is required")
+    .isLength({ min: 4, max: 30 })
+    .withMessage("Last Name must be 3 to 20 characters length"),
 
   check("email")
     .trim()

@@ -50,29 +50,21 @@ exports.studentValidator = [
     .isEmpty()
     .withMessage("Address is required"),
 
-  check("gsDivision")
+  check("GSdivision")
     .trim()
     .not()
     .isEmpty()
     .withMessage("Gs Division is required"),
 
-  check("dsDivision")
+  check("DSdivision")
     .trim()
     .not()
     .isEmpty()
     .withMessage("Ds Division is required"),
 
-  check("courseOfStudy")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Course is required"),
+  check("course").trim().not().isEmpty().withMessage("Course is required"),
 
-  check("yearOfStudy")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Year Of Study is required"),
+  check("year").trim().not().isEmpty().withMessage("Year Of Study is required"),
 
   check("medicalIssues")
     .trim()
@@ -80,17 +72,19 @@ exports.studentValidator = [
     .isEmpty()
     .withMessage("Medical Issue is required"),
 
-  check("guardianName")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Guardian Name is required"),
+  check("name").trim().not().isEmpty().withMessage("Guardian Name is required"),
 
-  check("rResidentalAddress")
+  check("residentalAddress2")
     .trim()
     .not()
     .isEmpty()
     .withMessage("Residental Address is required"),
+
+  check("phoneNo")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Phone Number  is required"),
 
   check("policeStation")
     .trim()
