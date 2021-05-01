@@ -8,13 +8,20 @@ const {
   createHostel,
   deleteHostel,
   getHostels,
+  getHostel,
   updateHostel,
 } = require("../controllers/hostel");
 
 const router = express.Router();
 
 router.get("/", getHostels);
-router.post("/", hostelValidator, hostelValidationResult, createHostel);
+router.get("/:id", getHostel);
+router.post(
+  "/createHostel",
+  hostelValidator,
+  hostelValidationResult,
+  createHostel
+);
 router.delete("/:id", deleteHostel);
 router.put("/:id", updateHostel);
 

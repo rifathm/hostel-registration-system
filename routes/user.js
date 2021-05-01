@@ -12,16 +12,21 @@ const {
   userSignIn,
   verify,
   logout,
-} = require("../controllers/signin");
+  getUser,
+} = require("../controllers/authController");
 
 const router = express.Router();
 
-router.get("/", getUsers);
-router.post("/signUp", userValidator, userValidationResult, registerUser);
-router.delete("/:id", deleteUser);
-router.put("/:id", updateUser);
+router.get("/logout", logout);
+router.post("/signUp", registerUser);
 router.post("/signIn", userSignIn);
 router.get("/verify", verify);
-router.get("/logout", logout);
+router.delete("/:id", deleteUser);
+router.get("/:id", getUser);
+
+router.put("/:id", updateUser);
+router.get("/", getUsers);
+router.post("/", getUsers);
+//router.post("/signUp", userValidator, userValidationResult, registerUser);
 
 module.exports = router;
