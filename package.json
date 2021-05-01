@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "npm run build --prefix client && node index.js",
+    "dev:server": "nodemon index.js --ignore client",
+    "dev:client": "npm start --prefix client",
+    "dev": "concurrently -n server,client -c yellow,cyan \"npm run dev:server\" \"npm run dev:client\""
   },
   "repository": {
     "type": "git",
@@ -19,10 +22,15 @@
   "homepage": "https://github.com/rifathm/hostel-registration-system#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.8.0",
-    "mongoose": "^5.11.5",
+    "google-map-react": "^2.1.9",
+    "mongoose": "^5.12.3",
+    "multer": "^1.4.2",
     "nodemon": "^2.0.6"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
