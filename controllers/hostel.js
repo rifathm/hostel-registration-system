@@ -29,6 +29,16 @@ const getHostels = async (req, res) => {
   }
 };
 
+const getHostel = async (req, res) => {
+  try {
+    const hostels = await Hostel.findById(req.params.id);
+    res.status(200).json({ msg: `SUCCESS.`, hostels });
+  } catch (err) {
+    res.status(400).json({ msg: `ERROR: ${err}` });
+    console.log(err);
+  }
+};
+
 const updateHostel = async (req, res) => {
   try {
     const hostels = await Hostel.findByIdAndUpdate(
@@ -48,6 +58,7 @@ const updateHostel = async (req, res) => {
 
 module.exports = {
   getHostels,
+  getHostel,
   createHostel,
   deleteHostel,
   updateHostel,

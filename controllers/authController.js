@@ -5,20 +5,32 @@ const UserSession = require("../models/UserSession");
 //create Users
 const registerUser = async (req, res, next) => {
   const { body } = req;
-  const { name, role, password } = body;
-  let { email } = body;
+  const { firstName, fullName, password, email, workPlace, role } = body;
 
-  if (!name) {
+  if (!firstName) {
     return res.send({
       success: false,
-      message: "Error:Name cannot be empty",
+      message: "Error: First Name cannot be empty",
+    });
+  }
+
+  if (!fullName) {
+    return res.send({
+      success: false,
+      message: "Error: Full Name cannot be empty",
     });
   }
 
   if (!role) {
     return res.send({
       success: false,
-      message: "Error:Role cannot be empty",
+      message: "Error: Role cannot be empty",
+    });
+  }
+  if (!workPlace) {
+    return res.send({
+      success: false,
+      message: "Error: Work-Place cannot be empty",
     });
   }
 
@@ -58,10 +70,13 @@ const registerUser = async (req, res, next) => {
       const newUser = new User();
 
       newUser.email = email;
-      newUser.name = name;
+      newUser.firstName = firstName;
+      newUser.fullName = fullName;
       newUser.role = role;
+      newUser.workPlace = workPlace;
       newUser.password = newUser.generateHash(password);
-      newUser.save((err, user) => {
+      newUser.save((err) => {
+        console.log(err);
         if (err) {
           return res.send({
             success: false,
@@ -92,6 +107,16 @@ const deleteUser = async (req, res) => {
 const getUsers = async (req, res) => {
   try {
     const user = await User.find();
+    res.status(200).json({ msg: `SUCCESS.`, user });
+  } catch (err) {
+    res.status(400).json({ msg: `ERROR: ${err}` });
+  }
+};
+
+// get user
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.body._id });
     res.status(200).json({ msg: `SUCCESS.`, user });
   } catch (err) {
     res.status(400).json({ msg: `ERROR: ${err}` });
@@ -173,11 +198,12 @@ const userSignIn = async (req, res, next) => {
             message: "Error:Server Error",
           });
         }
-
         return res.send({
           success: true,
           message: "valid Sign in",
           token: doc._id,
+          role: user.role,
+          workPlace: user.workPlace,
         });
       });
     }
@@ -262,4 +288,5 @@ module.exports = {
   userSignIn,
   verify,
   logout,
+  getUser,
 };
