@@ -14,17 +14,13 @@ exports.userValidator = [
     .trim()
     .not()
     .isEmpty()
-    .withMessage(" f Name is required")
-    .isLength({ min: 4, max: 30 })
-    .withMessage("First Name must be 3 to 20 characters length"),
+    .withMessage(" first Name is required"),
 
-  check("lastName")
+  check("fullName")
     .trim()
     .not()
     .isEmpty()
-    .withMessage(" l Name is required")
-    .isLength({ min: 4, max: 30 })
-    .withMessage("Last Name must be 3 to 20 characters length"),
+    .withMessage(" full Name is required"),
 
   check("email")
     .trim()
@@ -33,6 +29,20 @@ exports.userValidator = [
     .withMessage("Email is required")
     .isEmail()
     .withMessage("Please provide a valid email"),
+
+  check("role")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Role is required")
+    .withMessage("Please Select Your Role"),
+
+  check("workPlace")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Role is required")
+    .withMessage("Please Select Your Work Place"),
 
   check("password")
     .trim()
