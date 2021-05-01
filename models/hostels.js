@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 
 const hostelSchema = mongoose.Schema(
   {
-    hostelId: {
-      type: String,
+    contactNo: {
+      type: Number,
       required: true,
-      unique: true,
     },
 
     name: {
@@ -13,13 +12,22 @@ const hostelSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    address: {
+      type: String,
+      required: true,
+    },
 
     location: {
       type: String,
       required: true,
     },
 
-    wardenName: {
+    warden: {
+      type: String,
+      required: true,
+    },
+
+    subWarden: {
       type: String,
       required: true,
     },

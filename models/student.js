@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
-    _id: {
-      type: String,
-    },
     nic: {
       type: String,
       required: true,
@@ -54,17 +51,17 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    residentDistrict: {
+    district: {
       type: String,
       required: true,
     },
 
-    gsDivision: {
+    GSdivision: {
       type: String,
       required: true,
     },
 
-    dsDivision: {
+    DSdivision: {
       type: String,
       required: true,
     },
@@ -74,12 +71,21 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    courseOfStudy: {
+    img: {
+      type: String,
+    },
+
+    course: {
       type: String,
       required: true,
     },
 
-    yearOfStudy: {
+    preference: {
+      type: String,
+      required: true,
+    },
+
+    year: {
       type: Number,
       required: true,
     },
@@ -89,7 +95,7 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    guardianName: {
+    name: {
       type: String,
       required: true,
     },
@@ -99,8 +105,13 @@ const schema = mongoose.Schema(
       required: true,
     },
 
-    rResidentalAddress: {
+    residentalAddress2: {
       type: String,
+      required: true,
+    },
+
+    phoneNo: {
+      type: Number,
       required: true,
     },
 
