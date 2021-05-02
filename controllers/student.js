@@ -43,8 +43,15 @@ const deleteStudent = async (req, res) => {
 };
 
 const getStudents = async (req, res) => {
+  const { query } = req;
+  console.log(query);
   try {
-    const students = await Student.find();
+    let students = [];
+    if (query) {
+      students = await Student.find(query).catch((err) => console.log(err));
+    } else {
+      students = await Student.find();
+    }
     res.status(200).json({ msg: `SUCCESS.`, students });
   } catch (err) {
     res.status(400).json({ msg: `ERROR: ${err}` });
@@ -54,6 +61,7 @@ const getStudents = async (req, res) => {
 const getStudent = async (req, res) => {
   try {
     const student = await Student.findById(req.params.id);
+
     res.status(200).json({ msg: `SUCCESS.`, student });
   } catch (err) {
     res.status(400).json({ msg: `ERROR: ${err}` });

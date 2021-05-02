@@ -1,76 +1,98 @@
-import React, { Component } from 'react';
-import  {useState} from 'react';
-import { Collapse, CardBody, Card, CardHeader,Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import { HOSTELS } from '../shared/hostels';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import Layout from "./Layout";
+import Map from "./Map";
 
+import {
+  Collapse,
+  CardBody,
+  Card,
+  CardHeader,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+import { HOSTELS } from "../shared/hostels";
+import { Link } from "react-router-dom";
 
-
-
-class Location  extends Component {
-constructor(props) {
-    super(props); 
+class Location extends Component {
+  constructor(props) {
+    super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-         hostels: HOSTELS, 
-         collapse: 0,
-         
+      hostels: HOSTELS,
+      collapse: 0,
     };
   }
 
-
-toggle(e) {
+  toggle(e) {
     let event = e.target.dataset.event;
-    this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
+    this.setState({
+      collapse: this.state.collapse === Number(event) ? 0 : Number(event),
+    });
   }
 
+  componentWillMount() {
+    fetch("/hostels")
+      .then((res) => res.json())
+      .then((data) => this.setState({ HOSTELS: data.HOSTELS }));
+  }
 
   render() {
-    const {hostels, collapse} = this.state;
+    const { collapse } = this.state;
     return (
-      <div className="container">
+      <Layout>
+        <div className="container">
           <div className="row">
-                      <Breadcrumb>
-                          <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                          <BreadcrumbItem active>Guidelines</BreadcrumbItem>
-                      </Breadcrumb>
+            <Breadcrumb>
+              <BreadcrumbItem>
+                <Link to="/home">Home</Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem active>Guidelines</BreadcrumbItem>
+            </Breadcrumb>
           </div>
 
-        < hr />
-        <div className="col-12 col-md">
-         <h3 className="page-header">Hostel & Location</h3>
-          {hostels.map(hostel => {
-            return (
-              <Card style={{ marginBottom: '1rem' }} key={hostel.id}>
-                <CardHeader  className="bg-secondary text-white" onClick={this.toggle} data-event={hostel.id}>{hostel.name}</CardHeader>
-                <Collapse isOpen={collapse === hostel.id}>
-                <CardBody>
-                       <div className=" col-md-6">
-                           <dl>
-                                <div className="col-12">
-                                <dt >Warden</dt>
-                                <dd >{hostel.warden}</dd>
-                                </div>
-                                <dt className="col-6">Sub Warden </dt>
-                                <dd className="col-6">{hostel.subWarden}</dd>
-                                <dt className="col-6">Address</dt>
-                                <dd className="col-6">{hostel.address}</dd>
-                                <dt className="col-6">Telephone Number</dt>
-                                <dd className="col-6">{hostel.tel}</dd>
-                            </dl>
-                        </div>  
-                        <div className=" col-md">
-                          {hostel.maplocation}  
-                        </div>  
-                </CardBody>
-                </Collapse>
-              </Card>
-              
-            )
-          })}     
-  
+          <hr />
+          <div className="col-12 col-md">
+            <h3 className="page-header">Hostel & Location</h3>
+            {HOSTELS.map((hostel) => {
+              return (
+                <Card style={{ marginBottom: "1rem" }} key={hostel.id}>
+                  <CardHeader
+                    className="bg-secondary text-white"
+                    onClick={this.toggle}
+                    data-event={hostel.id}
+                  >
+                    {hostel.name}
+                  </CardHeader>
+                  <Collapse isOpen={collapse === hostel.id}>
+                    <CardBody>
+                      <div class="row">
+                        <div className=" col-md-4">
+                          <dl>
+                            <div className="col-6">
+                              <dt>Warden</dt>
+                              <dd>{HOSTELS.warden}</dd>
+                            </div>
+                            <dt className="col-6">Sub Warden </dt>
+                            <dd className="col-6">{hostel.subWarden}</dd>
+                            <dt className="col-6">Address</dt>
+                            <dd className="col-6">{hostel.address}</dd>
+                            <dt className="col-6">Contact Number</dt>
+                            <dd className="col-6">{hostel.tel}</dd>
+                          </dl>
+                        </div>
+
+                        <div className=" col-md-4">
+                          <Map location={hostel.location} />
+                        </div>
+                      </div>
+                    </CardBody>
+                  </Collapse>
+                </Card>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }
