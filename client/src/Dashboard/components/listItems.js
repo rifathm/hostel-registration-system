@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import HomeIcon from "@material-ui/icons/Home";
@@ -15,7 +15,9 @@ import axios from "axios";
 export const MainListItems = () => {
   const { url } = useRouteMatch();
   const [data, setData] = useState([]);
-  const storage = getFromStorage("the_main_app_role", "the_main_app_workPlace");
+  const { role } = getFromStorage("the_main_app_role");
+  const { workPlace } = getFromStorage("the_main_app_workPlace");
+  console.log(role, workPlace);
 
   useState(() => {
     axios
@@ -26,14 +28,19 @@ export const MainListItems = () => {
   // const storage1 = getFromStorage("the_main_app_workPlace");
   return (
     <div>
-      {storage && storage.role === "admin" && storage.workPlace === "welfare" && (
+      {role === "admin" && workPlace === "welfare" && (
         <>
           <ListItem button component={Link} to={url}>
             <ListItemIcon>
               <DashboardIcon fontSize="small" />
             </ListItemIcon>
-            <ListItemText primary={storage.role} />
-            <ListItemText primary={storage.workPlace} />
+            <ListItemText primary={role} />
+          </ListItem>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <LocationOnIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={workPlace} />
           </ListItem>
           <ListItem button component={Link} to={`${url}/Applications`}>
             <ListItemIcon>
@@ -62,46 +69,66 @@ export const MainListItems = () => {
         </>
       )}
 
-      {storage &&
-        storage.role === "warden" &&
-        storage.workPlace === " kondavil" && (
-          <>
-            <ListItem button component={Link} to={url}>
-              <ListItemIcon>
-                <DashboardIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary={storage.role} />
-              <ListItemText primary={storage.workPlace} />
-            </ListItem>
-            <ListItem button component={Link} to={`${url}/applications`}>
-              <ListItemIcon>
-                <DescriptionIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Applications" />
-            </ListItem>
-            <ListItem button component={Link} to={`${url}/Hostel`}>
-              <ListItemIcon>
-                <AssignmentIndIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary="Hostels" />
-            </ListItem>
-          </>
-        )}
-
-      {storage && storage.role === "dean" && storage.workPlace === " science" && (
+      {role === "warden" && workPlace === "Female Hostel – I" && (
         <>
           <ListItem button component={Link} to={url}>
             <ListItemIcon>
               <DashboardIcon fontSize="small" />
             </ListItemIcon>
-            <ListItemText primary={storage.role} />
-            <ListItemText primary={storage.workPlace} />
+            <ListItemText primary={role} />
+          </ListItem>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <LocationOnIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={workPlace} />
           </ListItem>
           <ListItem button component={Link} to={`${url}/applications`}>
             <ListItemIcon>
               <DescriptionIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Applications" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/students`}>
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Students" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/Hostel`}>
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Hostels" />
+          </ListItem>
+        </>
+      )}
+
+      {role === "dean" && workPlace === "Science" && (
+        <>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <DashboardIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={role} />
+          </ListItem>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <LocationOnIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={workPlace} />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/applications`}>
+            <ListItemIcon>
+              <DescriptionIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Applications" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/students`}>
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Students" />
           </ListItem>
         </>
       )}

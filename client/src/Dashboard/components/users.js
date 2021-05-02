@@ -17,6 +17,15 @@ function preventDefault(event) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
   seeMore: {
     marginTop: theme.spacing(3),
   },
@@ -77,6 +86,9 @@ export default function Users() {
             </TableCell>
             <TableCell>
               <strong>Email</strong>
+            </TableCell>
+            <TableCell colspan="2">
+              <strong>Action</strong>
             </TableCell>
           </TableRow>
         </TableHead>
