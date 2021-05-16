@@ -4,7 +4,7 @@
                                                              FACULTY OF SCIENCE
                                                             UNIVERSITY OF JAFFNA
                          
-                                                         ##Hostel Registration System 
+                                                         Hostel Registration System 
                                    Submitted in partial fulfillment of requirements for the course unit 
                                                                 CSC304S3 2018 
                                                                 
