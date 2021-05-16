@@ -15,7 +15,7 @@
                                              K.Kishani - 2017/CSC/030 
                                              E.M.C.G.Ekanayake - 2016/CSC/036 
                
-               Group 
-Lecturer: 
-Assistant Lecturer :
-Mentor:
+                                                              Group 
+                                            Lecturer: 
+                                            Assistant Lecturer :
+                                            Mentor:
