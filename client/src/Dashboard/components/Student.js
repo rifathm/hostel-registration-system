@@ -40,15 +40,17 @@ export default function PendingApplications() {
 
     if (role === ROLE.DEAN) {
       axios
-        .get(`/students?faculty=${workPlace}&isVerified=true`)
+        .get(`/students?faculty=${workPlace}&isVerifiedDean=true`)
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.WARDEN) {
       axios
-        .get(`/students?preference=${workPlace}&isVerified=true`)
+        .get(`/students?preference=${workPlace}&isVerifiedWarden=true`)
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.ADMIN) {
       axios
-        .get("/students&isVerified=true")
+        .get(
+          `/students?isVerified=true&isVerifiedDean=true&isVerifiedWarden=true`
+        )
         .then((data) => setData(data.data.students));
     }
 

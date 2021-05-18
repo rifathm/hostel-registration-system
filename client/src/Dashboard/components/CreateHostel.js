@@ -65,14 +65,8 @@ class createhostel extends Component {
 
   onSignUp() {
     //grab State
-    const {
-      warden,
-      address,
-      name,
-      subWarden,
-      contactNo,
-      location,
-    } = this.state;
+    const { warden, address, name, subWarden, contactNo, location } =
+      this.state;
 
     this.setState({
       isLoading: true,
@@ -106,6 +100,7 @@ class createhostel extends Component {
             address: "",
             location: "",
           });
+          this.props.history.push("/dashboard");
         } else {
           this.setState({
             Error: json.message,

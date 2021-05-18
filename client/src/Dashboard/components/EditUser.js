@@ -116,9 +116,7 @@ class EditUser extends Component {
                     </Label>
                     <Input
                       type="text"
-                      id="firstName"
                       name="firstName"
-                      placeholder="FIRST NAME"
                       value={this.state.firstName}
                       onBlur={this.handleBlur("firstName")}
                       onChange={this.handleInputChange}
@@ -129,9 +127,7 @@ class EditUser extends Component {
                     </Label>
                     <Input
                       type="text"
-                      id="fullName"
                       name="fullName"
-                      placeholder="FULL NAME"
                       value={this.state.fullName}
                       onBlur={this.handleBlur("fullName")}
                       onChange={this.handleInputChange}
@@ -142,9 +138,7 @@ class EditUser extends Component {
                     </Label>
                     <Input
                       type="email"
-                      id="email"
                       name="email"
-                      placeholder="EMAIL"
                       value={this.state.email}
                       onBlur={this.handleBlur("email")}
                       onChange={this.handleInputChange}
@@ -155,21 +149,17 @@ class EditUser extends Component {
                     </Label>
                     <Input
                       type="text"
-                      id="role"
                       name="role"
-                      placeholder="Role"
                       value={this.state.role}
                       onBlur={this.handleBlur("role")}
                       onChange={this.handleInputChange}
                     />
                     <Label htmlFor="workPlace">
-                      <strong>Work-Place</strong>
+                      <strong>WORK-PLACE</strong>
                     </Label>
                     <Input
                       type="text"
-                      id="workPlace"
                       name="workPlace"
-                      placeholder="Work-Place"
                       value={this.state.workPlace}
                       onBlur={this.handleBlur("workPlace")}
                       onChange={this.handleInputChange}

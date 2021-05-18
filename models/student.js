@@ -124,6 +124,14 @@ const schema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isVerifiedWarden: {
+      type: Boolean,
+      default: false,
+    },
+    isVerifiedDean: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     date: {

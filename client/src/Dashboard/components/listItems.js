@@ -60,6 +60,12 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary="Hostels" />
           </ListItem>
+          <ListItem button component={Link} to={`${url}/feedback`}>
+            <ListItemIcon>
+              <HomeIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Feedbacks" />
+          </ListItem>
           <ListItem button component={Link} to={`${url}/users`}>
             <ListItemIcon>
               <SupervisedUserCircleIcon fontSize="small" />
@@ -69,7 +75,7 @@ export const MainListItems = () => {
         </>
       )}
 
-      {role === "warden" && workPlace === "Female Hostel – I" && (
+      {role === "warden" && workPlace === "Kondavil Male Hostel" && (
         <>
           <ListItem button component={Link} to={url}>
             <ListItemIcon>
@@ -104,7 +110,71 @@ export const MainListItems = () => {
         </>
       )}
 
-      {role === "dean" && workPlace === "Science" && (
+      {role === "warden" && workPlace === "Kondavil Female Hostel" && (
+        <>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <DashboardIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={role} />
+          </ListItem>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <LocationOnIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={workPlace} />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/applications`}>
+            <ListItemIcon>
+              <DescriptionIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Applications" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/students`}>
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Students" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/Hostel`}>
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Hostels" />
+          </ListItem>
+        </>
+      )}
+
+      {role === "dean" && workPlace === "science" && (
+        <>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <DashboardIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={role} />
+          </ListItem>
+          <ListItem button component={Link} to={url}>
+            <ListItemIcon>
+              <LocationOnIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={workPlace} />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/applications`}>
+            <ListItemIcon>
+              <DescriptionIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Applications" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/students`}>
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Students" />
+          </ListItem>
+        </>
+      )}
+
+      {role === "dean" && workPlace === "arts" && (
         <>
           <ListItem button component={Link} to={url}>
             <ListItemIcon>

@@ -61,7 +61,7 @@ export default function Users() {
                 variant="outlined"
                 color="inherit"
                 type="link"
-                href="../SignUpComponent"
+                href="./createuser"
               >
                 Create User
               </Button>

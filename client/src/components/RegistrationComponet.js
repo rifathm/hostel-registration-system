@@ -41,23 +41,23 @@ class Registration extends Component {
       nic: "",
       contactNo: "",
       email: "",
-      sex: "male",
+      sex: "N/A",
       residentalAddress: "",
       medicalIssues: "",
       district: districts[0].district,
-      year: "1",
+      year: "N/A",
       GSdivision: "",
-      DSdivision: "foo1",
-      course: "COMPUTER SCIENCE",
+      DSdivision: "N/A",
+      course: "N/A",
       regNo: "",
-      faculty: "Arts",
+      faculty: "N/A",
       name: "",
-      relationship: "father",
+      relationship: "N/A",
       residentalAddress2: "",
       phoneNo: "",
       policeStation: "",
       agree: false,
-      preference: "Male-Hostel-1",
+      preference: "N/A",
       touched: {
         fullName: false,
         surName: false,
@@ -273,7 +273,7 @@ class Registration extends Component {
                   <Col md={3}>
                     <img
                       src={this.state.img}
-                      alt="dummy"
+                      alt="dummy.jpg"
                       width="200"
                       height="180"
                     />
@@ -302,9 +302,29 @@ class Registration extends Component {
                       value={this.state.district}
                       onChange={this.handleInputChange}
                     >
-                      {districts.map((opt, id) => (
-                        <option value={opt.district} key={id}>
-                          {opt.district}
+                      {districts.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </Input>
+                  </Col>
+
+                  <Col md={4}>
+                    <Label htmlFor="DSdivision">
+                      <strong>DS DIVISION</strong>
+                    </Label>
+
+                    <Input
+                      type="select"
+                      id="DSdivision"
+                      name="DSdivision"
+                      onChange={this.handleInputChange}
+                      value={this.state.DSdivision}
+                    >
+                      {districts.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
                         </option>
                       ))}
                     </Input>
@@ -323,25 +343,6 @@ class Registration extends Component {
                       onBlur={this.handleBlur("GSdivision")}
                       onChange={this.handleInputChange}
                     />
-                  </Col>
-                  <Col md={4}>
-                    <Label htmlFor="DSdivision">
-                      <strong>DS DIVISION</strong>
-                    </Label>
-
-                    <Input
-                      type="select"
-                      id="DSdivision"
-                      name="DSdivision"
-                      onChange={this.handleInputChange}
-                      value={this.state.DSdivision}
-                      onBlur={this.handleBlur("DSdivision")}
-                    >
-                      <option selected>foo</option>
-                      <option>foo1</option>
-                      <option>foo2</option>
-                      <option>foo3</option>
-                    </Input>
                   </Col>
                 </FormGroup>
                 <FormGroup row>

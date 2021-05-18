@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
 }));
-export default function Hostels() {
+export default function Feedback() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [page, setPage] = React.useState(0);
@@ -44,15 +44,15 @@ export default function Hostels() {
 
   const handleDelete = (_id) => {
     axios
-      .delete(`/hostels/${_id}`)
+      .delete(`/feedback/${_id}`)
       .then(setData((data) => data.filter((datum) => datum._id !== _id)))
       .catch(console.log("not deleted"));
   };
 
   useState(() => {
     axios
-      .get("http://localhost:5000/hostels/")
-      .then((data) => setData(data.data.hostels));
+      .get("http://localhost:5000/feedback/")
+      .then((data) => setData(data.data.feedback));
   }, []);
 
   //   console.log(data);
@@ -63,7 +63,7 @@ export default function Hostels() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              Hostel Details
+              Feedbacks
             </Typography>{" "}
             <Button
               variant="outlined"
@@ -80,20 +80,20 @@ export default function Hostels() {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell>Warden</TableCell>
-            <TableCell>Sub-Warden</TableCell>
             <TableCell>Contact-No</TableCell>
-            <TableCell>Address</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Contact-Via</TableCell>
+            <TableCell>FeedBack</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((datum) => (
             <TableRow key={datum.name}>
-              <TableCell>{datum.name}</TableCell>
-              <TableCell>{datum.warden}</TableCell>
-              <TableCell>{datum.subWarden}</TableCell>
-              <TableCell>{datum.contactNo}</TableCell>
-              <TableCell>{datum.address}</TableCell>
+              <TableCell>{datum.firstname}</TableCell>
+              <TableCell>{datum.telnum}</TableCell>
+              <TableCell>{datum.email}</TableCell>
+              <TableCell>{datum.contactType}</TableCell>
+              <TableCell>{datum.message}</TableCell>
 
               <TableCell align="right">
                 <Button

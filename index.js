@@ -9,6 +9,7 @@ const cors = require("cors");
 const student = require("./routes/student");
 const user = require("./routes/user");
 const hostel = require("./routes/hostel");
+const feedback = require("./routes/feedback");
 const { populate } = require("./models/User");
 
 dotenv.config();
@@ -36,6 +37,7 @@ mongoose
 app.use("/students", student);
 app.use("/user", user);
 app.use("/hostels", hostel);
+app.use("/feedback", feedback);
 
 if (process.env.ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));

@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Layout from "./Layout";
+import axios from "axios";
 
 class Contact extends Component {
   constructor(props) {
@@ -48,9 +49,17 @@ class Contact extends Component {
   }
 
   handleSubmit(event) {
-    console.log("Current State is: " + JSON.stringify(this.state));
-    alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
+    const { touched, ...values } = this.state;
+
+    axios
+      .post("http://localhost:5000/complaints/createInquery", values)
+
+      .then((res) => {
+        console.log(res.data.data._id);
+      })
+
+      .catch((err) => alert(err));
   }
 
   handleBlur = (field) => (evt) => {
@@ -262,6 +271,7 @@ class Contact extends Component {
                     <Input
                       type="select"
                       name="contactType"
+                      id="contactType"
                       value={this.state.contactType}
                       onChange={this.handleInputChange}
                     >

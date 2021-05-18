@@ -30,18 +30,14 @@ class SignUpCom extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(
-      this
-    );
-    this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(
-      this
-    );
-    this.onTextboxChangeSignUpFirstName = this.onTextboxChangeSignUpFirstName.bind(
-      this
-    );
-    this.onTextboxChangeSignUpfullName = this.onTextboxChangeSignUpfullName.bind(
-      this
-    );
+    this.onTextboxChangeSignUpEmail =
+      this.onTextboxChangeSignUpEmail.bind(this);
+    this.onTextboxChangeSignUpPassword =
+      this.onTextboxChangeSignUpPassword.bind(this);
+    this.onTextboxChangeSignUpFirstName =
+      this.onTextboxChangeSignUpFirstName.bind(this);
+    this.onTextboxChangeSignUpfullName =
+      this.onTextboxChangeSignUpfullName.bind(this);
 
     this.onSignUp = this.onSignUp.bind(this);
   }
@@ -102,7 +98,7 @@ class SignUpCom extends Component {
     });
 
     // POST request to backend
-    fetch("/user/signUp", {
+    fetch("http://localhost:5000/user/signUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -129,6 +125,7 @@ class SignUpCom extends Component {
             role: "",
             workPlace: "",
           });
+          this.props.history.push("/dashboard");
         } else {
           this.setState({
             signupError: json.message,
@@ -226,6 +223,7 @@ class SignUpCom extends Component {
             >
               <option value="welfare">Welfare</option>
               <option value="science">Science</option>
+              <option value="arts">Arts</option>
               <option value="kondavil">Kondavil</option>
             </Input>
           </FormGroup>
@@ -245,7 +243,6 @@ class SignUpCom extends Component {
             type="button"
             value="submit"
             color="primary"
-            href="/dashboard"
           >
             Create User
           </button>
