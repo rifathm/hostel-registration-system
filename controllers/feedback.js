@@ -14,7 +14,7 @@ const deleteInquery = async (req, res) => {
   try {
     console.log();
     const inquery = await Inquery.findByIdAndDelete(req.params.id);
-    res.status(200).json({ msg: `Successfully deleted inquery`, inquery });
+    res.status(200).json({ msg: `Successfully deleted feedback`, inquery });
   } catch (err) {
     res.status(400).json({ msg: `ERROR: ${err}` });
   }
@@ -50,7 +50,7 @@ const updateInquery = async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).json({ msg: `Succesfully updated inquery.`, inquerys });
+    res.status(200).json({ msg: `Succesfully updated feedback.`, inquerys });
   } catch (err) {
     res.status(400).json({ msg: `ERROR: ${err}` });
   }

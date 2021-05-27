@@ -8,6 +8,7 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import HomeIcon from "@material-ui/icons/Home";
 import DescriptionIcon from "@material-ui/icons/Description";
 import ListItemText from "@material-ui/core/ListItemText";
+import FeedbackIcon from "@material-ui/icons/Feedback";
 import { Link, useRouteMatch } from "react-router-dom";
 import { getFromStorage } from "../../utils/storage";
 import axios from "axios";
@@ -62,7 +63,7 @@ export const MainListItems = () => {
           </ListItem>
           <ListItem button component={Link} to={`${url}/feedback`}>
             <ListItemIcon>
-              <HomeIcon fontSize="small" />
+              <FeedbackIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Feedbacks" />
           </ListItem>

@@ -51,11 +51,11 @@ export default function Feedback() {
 
   useState(() => {
     axios
-      .get("http://localhost:5000/feedback/")
+      .get("localhost:5000/feedback/")
       .then((data) => setData(data.data.feedback));
   }, []);
 
-  //   console.log(data);
+  console.log(data);
 
   return (
     <React.Fragment>
@@ -63,27 +63,19 @@ export default function Feedback() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              Feedbacks
+              Student Feedbacks
             </Typography>{" "}
-            <Button
-              variant="outlined"
-              color="inherit"
-              type="link"
-              href="/dashboard/createhostel"
-            >
-              Create Hostel
-            </Button>
           </Toolbar>
         </AppBar>
       </div>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell>Firstname</TableCell>
             <TableCell>Contact-No</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Contact-Via</TableCell>
-            <TableCell>FeedBack</TableCell>
+            <TableCell>Feedback</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -98,7 +90,7 @@ export default function Feedback() {
               <TableCell align="right">
                 <Button
                   variant="contained"
-                  href={`/dashboard/hosteledit/${datum._id}`}
+                  href={`/dashboard/feedback/${datum._id}`}
                   color="primary"
                 >
                   Edit
