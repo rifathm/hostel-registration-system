@@ -24,14 +24,8 @@ class EditHostel extends Component {
 
   componentDidMount() {
     axios.get(`/hostels/${this.props.match.params.id}`).then((res) => {
-      const {
-        name,
-        warden,
-        subWarden,
-        contactNo,
-        address,
-        location,
-      } = res.data.hostels;
+      const { name, warden, subWarden, contactNo, address, location } =
+        res.data.hostels;
       this.setState({
         name,
         warden,

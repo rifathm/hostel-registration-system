@@ -98,7 +98,7 @@ class SignUpCom extends Component {
     });
 
     // POST request to backend
-    fetch("http://localhost:5000/user/signUp", {
+    fetch("/user/signUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,6 @@ class SignUpCom extends Component {
       role,
       workPlace,
     } = this.state;
-
     if (isLoading) {
       return <div>Succesfully Signed-Up </div>;
     }

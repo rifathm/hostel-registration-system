@@ -78,6 +78,7 @@ class Registration extends Component {
         phoneNo: false,
         policeStation: false,
       },
+      img: { preview: "", raw: "" },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -271,12 +272,26 @@ class Registration extends Component {
                   </Col>
 
                   <Col md={3}>
-                    <img
-                      src={this.state.img}
-                      alt="dummy.jpg"
-                      width="200"
-                      height="180"
-                    />
+                    {this.state.img.preview ? (
+                      <img alt="dummy" width="200" height="180" />
+                    ) : (
+                      <>
+                        {/* <span className="fa-stack fa-2x mt-3 mb-2">
+                            <i className="fas fa-circle fa-stack-2x" />
+                            <i className="fas fa-store fa-stack-1x fa-inverse" />
+                          </span>
+                          <h5 className="text-center">Upload your photo</h5> */}
+                        <Card>
+                          <CardImg
+                            top
+                            width="120"
+                            height="180"
+                            src="https://orthosera.com/wp-content/uploads/2016/02/user-profile-placeholder.png"
+                            alt="Card image cap"
+                          />
+                        </Card>
+                      </>
+                    )}
 
                     <label htmlFor="upload-button" className="btn btn-warning">
                       Upload

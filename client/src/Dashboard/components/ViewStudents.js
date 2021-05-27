@@ -134,6 +134,21 @@ class viewStudents extends Component {
           <div className="col-12">
             <Form>
               <div className="col-12">
+                <div className="row">
+                  <div className="col-12 col-sm-1">
+                    <img
+                      src="../../assets/images/LOGOUOJ.png"
+                      className="img-fluid rounded-circle"
+                      height="50"
+                      width="50"
+                      alt="LOGOUOJ"
+                    />
+                  </div>
+                  <div className="col-12 col-sm-8">
+                    <h4>Hostel Registration System</h4>
+                    <p>University of Jaffna</p>
+                  </div>
+                </div>
                 <p>
                   <strong>STUDENT DETAILS </strong>
                 </p>

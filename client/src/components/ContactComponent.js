@@ -53,7 +53,7 @@ class Contact extends Component {
     const { touched, ...values } = this.state;
 
     axios
-      .post("http://localhost:5000/complaints/createInquery", values)
+      .post("http://localhost:5000/feedback/createFeedback", values)
 
       .then((res) => {
         console.log(res.data.data._id);

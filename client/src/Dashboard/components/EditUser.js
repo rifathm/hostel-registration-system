@@ -38,7 +38,7 @@ class EditUser extends Component {
   }
 
   componentDidMount() {
-    axios.post(`/user/${this.props.match.params.id}`).then((data) => {
+    axios.get(`/user/${this.props.match.params.id}`).then((data) => {
       const { firstName, fullName, email, role, workPlace } = data.data.user;
       console.log(data);
       this.setState({

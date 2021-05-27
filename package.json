@@ -22,14 +22,17 @@
   "homepage": "https://github.com/rifathm/hostel-registration-system#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
     "express-validator": "^6.8.0",
     "google-map-react": "^2.1.9",
     "mongoose": "^5.12.3",
     "multer": "^1.4.2",
+    "nodemailer": "^6.6.1",
     "nodemon": "^2.0.6"
   },
   "proxy": "http://localhost:5000"

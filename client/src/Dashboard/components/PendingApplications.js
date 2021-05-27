@@ -37,7 +37,7 @@ export default function PendingApplications() {
       .catch(console.log("not deleted"));
   };
 
-  const handleVerify = (_id) => {
+  const handleVerify1 = (_id) => {
     axios
       .put(`/students/${_id}`, { isVerified: true })
       .then(setData((data) => data.filter((datum) => datum._id !== _id)))
@@ -61,9 +61,10 @@ export default function PendingApplications() {
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.ADMIN) {
       axios
-        .get(
-          `/students&isVerified=false&isVerifiedDean=true&isVerifiedWarden=true`
-        )
+        // .get(
+        //   `/students?preference=${workPlace}&isVerified=false&isVerifiedDean=true&isVerifiedWarden=true`
+        // ) .get(
+        .get("/students")
         .then((data) => setData(data.data.students));
     }
 
@@ -96,6 +97,29 @@ export default function PendingApplications() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleVerify = (_id) => {
+    let query;
+
+    if (role === ROLE.DEAN) {
+      axios
+        .put(`/students/${_id}`, { isVerifiedDean: true })
+        .then(setData((data) => data.filter((datum) => datum._id !== _id)))
+        .catch(console.log("not verified"));
+      setAnchorEl(null);
+    } else if (role === ROLE.WARDEN) {
+      axios
+        .put(`/students/${_id}`, { isVerifiedWarden: true })
+        .then(setData((data) => data.filter((datum) => datum._id !== _id)))
+        .catch(console.log("not verified"));
+      setAnchorEl(null);
+    } else if (role === ROLE.ADMIN) {
+      axios
+        .put(`/students/${_id}`, { isVerified: true })
+        .then(setData((data) => data.filter((datum) => datum._id !== _id)))
+        .catch(console.log("not verified"));
+      setAnchorEl(null);
+    }
   };
 
   return (
@@ -148,7 +172,7 @@ export default function PendingApplications() {
                       open={open}
                       onClose={handleClose}
                     >
-                      <MenuItem>
+                      <MenuItem onClick={handleClose}>
                         <a href={`/view-student/${datum._id}`}>View Details</a>
                       </MenuItem>
                       <MenuItem onClick={() => handleVerify(datum._id)}>

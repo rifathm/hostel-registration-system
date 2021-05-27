@@ -85,7 +85,7 @@ const registerUser = async (req, res, next) => {
         }
         return res.send({
           success: true,
-          message: "SignedUp",
+          message: "SignedUp successfully",
         });
       });
     }
@@ -116,10 +116,11 @@ const getUsers = async (req, res) => {
 // get user
 const getUser = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.body._id });
+    const user = await User.findById(req.params.id);
     res.status(200).json({ msg: `SUCCESS.`, user });
   } catch (err) {
     res.status(400).json({ msg: `ERROR: ${err}` });
+    console.log(err);
   }
 };
 

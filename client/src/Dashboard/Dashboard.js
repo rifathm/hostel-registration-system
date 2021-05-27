@@ -36,7 +36,7 @@ import CreateHostel from "./components/CreateHostel";
 import createuser from "./components/createuser";
 import Hostels from "./views/Hostels";
 import table from "./components/table";
-import feedback from "./components/feedback";
+import Feedback from "./components/feedback";
 import { getFromStorage } from "../utils/storage";
 
 import { withRouter } from "react-router-dom";
@@ -300,7 +300,7 @@ const Dashboard = ({ history }) => {
             <Route path={`${path}/createhostel`} component={CreateHostel} />
             <Route path={`${path}/createuser`} component={createuser} />
             <Route path={`${path}/table`} component={table} />
-            <Route path={`${path}/feedback`} component={feedback} />
+            <Route path={`${path}/feedback`} component={Feedback} />
           </Switch>
           <Box pt={4}>
             <Copyright />

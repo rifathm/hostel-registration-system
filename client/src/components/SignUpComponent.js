@@ -17,20 +17,26 @@ class SignUpCom extends Component {
       signUpPassword: "",
       Role: "admin",
       workPlace: "welfare",
+      touched: {
+        token: false,
+        signUpError: false,
+        signUpFirstName: false,
+        signUpEmail: false,
+        signUpfullName: false,
+        signUpPassword: false,
+        role: false,
+        workPlace: false,
+      },
     };
 
-    this.onTextboxChangeSignUpEmail = this.onTextboxChangeSignUpEmail.bind(
-      this
-    );
-    this.onTextboxChangeSignUpPassword = this.onTextboxChangeSignUpPassword.bind(
-      this
-    );
-    this.onTextboxChangeSignUpFirstName = this.onTextboxChangeSignUpFirstName.bind(
-      this
-    );
-    this.onTextboxChangeSignUpFullName = this.onTextboxChangeSignUpFullName.bind(
-      this
-    );
+    this.onTextboxChangeSignUpEmail =
+      this.onTextboxChangeSignUpEmail.bind(this);
+    this.onTextboxChangeSignUpPassword =
+      this.onTextboxChangeSignUpPassword.bind(this);
+    this.onTextboxChangeSignUpFirstName =
+      this.onTextboxChangeSignUpFirstName.bind(this);
+    this.onTextboxChangeSignUpFullName =
+      this.onTextboxChangeSignUpFullName.bind(this);
     this.onTextboxChangeRole = this.onTextboxChangeRole.bind(this);
 
     this.onSignUp = this.onSignUp.bind(this);
@@ -214,9 +220,9 @@ class SignUpCom extends Component {
               value={Role}
               onChange={this.onTextboxChangeRole}
             >
-              <option>admin</option>
-              <option>Dean</option>
-              <option>Warden</option>
+              <option value="admin">admin</option>
+              <option value="dean">Dean</option>
+              <option value="warden">Warden</option>
             </Input>
           </FormGroup>
           <FormGroup>
@@ -228,9 +234,10 @@ class SignUpCom extends Component {
               onChange={this.handleInputChange}
               value={workPlace}
             >
-              <option value="Welfare">Welfare</option>
-              <option value="Science">Science</option>
-              <option value="Kondavil">Kondavil</option>
+              <option value="welfare">Welfare</option>
+              <option value="science">Science</option>
+              <option value="arts">Arts</option>
+              <option value="kondavil">Kondavil</option>
             </Input>
           </FormGroup>
           <FormGroup>
