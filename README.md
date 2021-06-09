@@ -16,6 +16,6 @@
                                              E.M.C.G.Ekanayake - 2016/CSC/036 
                
                                                               Group 
-                                            Lecturer: 
-                                            Assistant Lecturer :
-                                            Mentor:
+                                            Lecturer: Dr.(Mrs)B.Mayurathan
+                                            Assistant Lecturer : Ms. P. Janani
+                                            Mentor: Ms. A.Theevika
