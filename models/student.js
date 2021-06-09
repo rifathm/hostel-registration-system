@@ -119,6 +119,9 @@ const schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    selectedHostel: {
+      type: String,
+    },
 
     isVerified: {
       type: Boolean,
@@ -131,6 +134,10 @@ const schema = mongoose.Schema(
     isVerifiedDean: {
       type: Boolean,
       default: false,
+    },
+    state: {
+      type: Boolean,
+      default: true,
     },
   },
   {

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        MAil
+    </header>
+    <body>
+ <div className="container">
+        <div className="container">
+          <div className="row">
+            <Breadcrumb>
+              <BreadcrumbItem>
+                <Link to="/">Home</Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem active>Registration</BreadcrumbItem>
+            </Breadcrumb>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="col-12 col-sm-1">
+            <img
+              src="assets/images/LOGOUOJ.png"
+              className="img-fluid rounded-circle"
+              height="50"
+              width="50"
+              alt="LOGOUOJ"
+            />
+          </div>
+          <div className="col-12 col-sm-8">
+            <h4>Hostel Registration System</h4>
+            <p>University of Jaffna</p>
+          </div>
+        </div>
+
+        <div className="col-12 col-sm-8"></div>
+
+        <div className="row row-content">
+          <div className="col-12">
+            <Form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+              <div className="col-12">
+                <p>
+                  <strong>HOSTEL REGISTRATION FORM .</strong>Student Particulars
+                </p>
+                <p>
+                  <strong>1.Please fill in BLOCK LETTERS</strong>
+                  <br />
+                  <strong>2.Upload a colour photograph</strong>
+                </p>
+                <FormGroup row>
+                  <Col md={8}>
+                    <Label htmlFor="fullName">
+                      <strong>FULL NAME</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      placeholder="FULL NAME"
+                 
+                    <FormFeedback>{errors.fullName}</FormFeedback>
+
+                    <Label htmlFor="surName">
+                      <strong>SUR NAME</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="surName"
+                      name="surName"
+                      placeholder="SUR NAME"
+                      
+                    
+                    <FormFeedback>{errors.surName}</FormFeedback>
+
+                    <Label htmlFor="residentalAddress">
+                      <strong>RESIDENTIAL ADDRESS</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="residentalAddress"
+                      name="residentalAddress"
+                      placeholder="RESIDENTIAL ADDRESS"
+                     
+                    />
+                  </Col>
+
+                  <Col md={3}>
+                    {this.state.img.preview ? (
+                      <img alt="dummy" width="200" height="180" />
+                    ) : (
+                      <Card>
+                        <CardImg
+                          top
+                          width="120"
+                          height="180"
+                          src="https://orthosera.com/wp-content/uploads/2016/02/user-profile-placeholder.png"
+                          alt="Card image cap"
+                        />
+                      </Card>
+                    )}
+
+                    <label htmlFor="upload-button" className="btn btn-warning">
+                      Upload
+                    </label>
+                    <input
+                      type="file"
+                      name="img"
+                      id="upload-button"
+                     
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Col md={4}>
+                    <Label htmlFor="district">
+                      <strong>DISTRICT</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      id="district"
+                      name="district"
+                     
+                    >
+                      {districts.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </Input>
+                  </Col>
+
+                  <Col md={4}>
+                    <Label htmlFor="DSdivision">
+                      <strong>DS DIVISION</strong>
+                    </Label>
+
+                    <Input
+                      type="select"
+                      id="DSdivision"
+                      name="DSdivision"
+                  
+                    >
+                      {districts.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </Input>
+                  </Col>
+
+                  <Col md={4}>
+                    <Label htmlFor="GSdivision">
+                      <strong>GS DIVISION</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="GSdivision"
+                      name="GSdivision"
+                      placeholder="GS DIVISION"
+                      
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Col md={4}>
+                    <Label htmlFor="sex">
+                      <strong>SEX</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      id="sex"
+                      name="sex"
+                     
+                    >
+                      <option selected>MALE</option>
+                      <option>FEMALE</option>
+                    </Input>
+                  </Col>
+                  <Col md={4}>
+                    <Label htmlFor="dob">
+                      <strong>DATE OF BIRTH</strong>
+                    </Label>
+                    <Input
+                      type="date"
+                      id="dob"
+                      name="dob"
+                     
+                    />
+                  </Col>
+                  <Col md={4}>
+                    <Label htmlFor="nic">
+                      <strong>NIC</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="nic"
+                      name="nic"
+                      placeholder="NIC"
+                      
+                    />
+                    <FormFeedback>{errors.nic}</FormFeedback>
+                  </Col>
+                </FormGroup>
+
+                <FormGroup row>
+                  <Col md={8}>
+                    <Label htmlFor="regNo">
+                      <strong>UNIVERSITY REGISTRATION NUMBER</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="regNo"
+                      name="regNo"
+                      placeholder="UNIVERSITY REGISTRATION NUMBER"
+                     
+                    />
+                    <FormFeedback>{errors.nic}</FormFeedback>
+                  </Col>
+                  <Col md={4}>
+                    <Label htmlFor="faculty">
+                      <strong>FACULTY</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      name="faculty"
+                    
+                    >
+                      {faculties.map((opt, id) => (
+                        <option value={opt} key={id}>
+                          {opt}
+                        </option>
+                      ))}
+                    </Input>
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Col md={4}>
+                    <Label htmlFor="course">
+                      <strong>COURSE OF STUDY</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      name="course"
+                      
+                    >
+                      <option selected>COMPUTER SCIENCE</option>
+                      <option>PHYSICAL SCIENCE</option>
+                      <option>BIO SCIENCE</option>
+                      <option>COMMERCE</option>
+                      <option>LAW</option>
+                      <option>ARTS & LITERATURE</option>
+                    </Input>
+                  </Col>
+                  <Col md={4}>
+                    <Label htmlFor="year">
+                      <strong>YEAR OF STUDY</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      name="year"
+                    
+                    >
+                      <option value="1">1ST YEAR</option>
+                      <option value="2">4TH YEAR</option>
+                    </Input>
+                  </Col>
+                  <Col md={4}>
+                    <Label htmlFor="preference">
+                      <strong>HOSTELPREFERENCE</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      name="preference"
+                     
+                    >
+                      {hostels.map((opt, id) => (
+                        <option value={opt} key={id}>
+                          {opt}
+                        </option>
+                      ))}
+                    </Input>
+                  </Col>
+                </FormGroup>
+
+                <FormGroup row>
+                  <Col md={4}>
+                    <Label htmlFor="contactNo">
+                      <strong>CONTACT NUMBER</strong>
+                    </Label>
+                    <Input
+                      type="tel"
+                      id="contactNo"
+                      name="contactNo"
+                      placeholder="CONTACT NUMBER"
+                      
+                    />
+                    <FormFeedback>{errors.contactNo}</FormFeedback>
+                  </Col>
+
+                  <Col md={8}>
+                    <Label htmlFor="email">
+                      <strong>EMAIL ID</strong>
+                    </Label>
+                    <Input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="EMAIL ID"
+                     
+                    />
+                    <FormFeedback>{errors.email}</FormFeedback>
+                  </Col>
+                </FormGroup>
+
+                <FormGroup row>
+                  <Col md={12}>
+                    <Label htmlFor="medicalIssues">
+                      <strong>
+                        Whether the candidate has any medical History of
+                        Alignments
+                      </strong>
+                      <br />
+                      If yes , please state briefly & Attach Medical Certificate
+                    </Label>
+                    <Input
+                      type="text"
+                      id="medicalIssues"
+                      name="medicalIssues"
+                      placeholder="MEDICAL ISSUES"
+                     
+                    />
+                  </Col>
+                </FormGroup>
+
+                <p>
+                  <strong>PERSON TO CONTACT IN CASE OF EMERGENCY</strong>
+                </p>
+
+                <FormGroup row>
+                  <Col md={6}>
+                    <Label htmlFor="name">
+                      <strong>NAME</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="NAME"
+                      
+                     
+                    />
+                    <FormFeedback>{errors.name}</FormFeedback>
+                  </Col>
+                  <Col md={6}>
+                    <Label htmlFor="relationship">
+                      <strong>RELATIONSHIP</strong>
+                    </Label>
+                    <Input
+                      type="select"
+                      name="relationship"
+                      
+                    >
+                      <option selected>FATHER</option>
+                      <option>MOTHER</option>
+                      <option>GUARDIAN</option>
+                    </Input>
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Col md={6}>
+                    <Label htmlFor="residentalAddress2">
+                      <strong>RESIDENTIAL ADDRESS</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="residentalAddress2"
+                      name="residentalAddress2"
+                      placeholder="RESIDENTIAL ADDRESS"
+                     
+                    />
+                  </Col>
+
+                  <Col md={6}>
+                    <Label htmlFor="phoneNo">
+                      <strong>PHONE NO</strong>
+                    </Label>
+                    <Input
+                      type="tel"
+                      id="phoneNo"
+                      name="phoneNo"
+                      placeholder="PHONE NO"
+                 
+                      
+                    <FormFeedback>{errors.phoneNo}</FormFeedback>
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Col md={12}>
+                    <Label htmlFor="policeStation">
+                      <strong>POLICE STATION NEAR BY YOUR HOMETOWN</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      id="policeStation"
+                      name="policeStation"
+                      placeholder="POLICE STATION"
+                     
+                    />
+                  </Col>
+                </FormGroup>
+
+                
+
+                <p>
+                  <strong>DECLARATION TO BE SIGNED BY THE STUDENT</strong>
+                </p>
+
+                <FormGroup row>
+                  <Col>
+                    <FormGroup check>
+                      <Label check>
+                        <Input
+                          type="checkbox"
+                          name="agree"
+                         
+                        />{" "}
+                        <strong>
+                          {" "}
+                          I have read all the rules and regulations of the
+                          hostel annexed with this application form care fully.
+                          I hereby agree to abide by the rules and regulations
+                          of the hostel in force from time to time.I am liable
+                          for dicipilinary action in case of any breach.
+                        </strong>
+                      </Label>
+                    </FormGroup>
+                  </Col>
+                </FormGroup>
+
+                <FormGroup row>
+                  <Col >
+                    <Button type="submit" color="primary">
+                      REGISTER
+                    </Button>
+                  </Col>
+                </FormGroup>
+              </div>
+            </Form>
+          </div>
+        </div>
+      </div>
+ 
+ 
+    </body>
+</html>
+     

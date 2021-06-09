@@ -10,7 +10,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import TablePagination from "@material-ui/core/TablePagination";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,13 +28,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Feedback() {
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [setPage] = React.useState(0);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const [setRowsPerPage] = React.useState(5);
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -51,11 +46,10 @@ export default function Feedback() {
 
   useState(() => {
     axios
-      .get("localhost:5000/feedback/")
-      .then((data) => setData(data.data.feedback));
+      .get("http://localhost:5000/feedback/")
+      .then((data) => setData(data.data.inquerys));
+    console.log(data);
   }, []);
-
-  console.log(data);
 
   return (
     <React.Fragment>
@@ -80,7 +74,7 @@ export default function Feedback() {
         </TableHead>
         <TableBody>
           {data.map((datum) => (
-            <TableRow key={datum.name}>
+            <TableRow key={datum._id}>
               <TableCell>{datum.firstname}</TableCell>
               <TableCell>{datum.telnum}</TableCell>
               <TableCell>{datum.email}</TableCell>

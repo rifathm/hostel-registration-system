@@ -74,7 +74,7 @@ function About(props) {
               <CardBody>
                 <dl className="row p-1">
                   <dt className="col-6">Started</dt>
-                  <dd className="col-6">ddmmyyyy</dd>
+                  <dd className="col-6">11/05/1999</dd>
                   <dt className="col-6">Located in </dt>
                   <dd className="col-6">Jaffna</dd>
                   <dt className="col-6">University Owned Hostels</dt>

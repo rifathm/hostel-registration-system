@@ -37,6 +37,8 @@ import createuser from "./components/createuser";
 import Hostels from "./views/Hostels";
 import table from "./components/table";
 import Feedback from "./components/feedback";
+import Reject from "./components/rejected-students";
+import search from "./components/search";
 import { getFromStorage } from "../utils/storage";
 
 import { withRouter } from "react-router-dom";
@@ -223,19 +225,7 @@ const Dashboard = ({ history }) => {
           >
             Hostel Registration System
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+
           <ContextMenu />
         </Toolbar>
       </AppBar>
@@ -301,6 +291,8 @@ const Dashboard = ({ history }) => {
             <Route path={`${path}/createuser`} component={createuser} />
             <Route path={`${path}/table`} component={table} />
             <Route path={`${path}/feedback`} component={Feedback} />
+            <Route path={`${path}/rejected-students`} component={Reject} />
+            <Route path={`${path}/search`} component={search} />
           </Switch>
           <Box pt={4}>
             <Copyright />

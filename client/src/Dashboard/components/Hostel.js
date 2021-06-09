@@ -9,8 +9,13 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+
+import InputBase from "@material-ui/core/InputBase";
+
+import SearchIcon from "@material-ui/icons/Search";
 import axios from "axios";
 import TablePagination from "@material-ui/core/TablePagination";
+import { getFromStorage } from "../../utils/storage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +37,9 @@ export default function Hostels() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const { workPlace } = getFromStorage("the_main_app_workPlace");
+  const { role } = getFromStorage("the_main_app_role");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -67,54 +75,99 @@ export default function Hostels() {
             </Typography>{" "}
             <Button
               variant="outlined"
-              color="inherit"
-              type="link"
-              href="/dashboard/createhostel"
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+              }}
+              type="input"
+              marginRight="10px"
             >
-              Create Hostel
+              <SearchIcon />
+
+              <InputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
             </Button>
+            {role === "admin" && workPlace === "welfare" && (
+              <Button
+                variant="outlined"
+                color="inherit"
+                type="link"
+                href="/dashboard/createhostel"
+              >
+                Create Hostel
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
       </div>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Warden</TableCell>
-            <TableCell>Sub-Warden</TableCell>
-            <TableCell>Contact-No</TableCell>
-            <TableCell>Address</TableCell>
+            <TableCell>
+              <b>Name</b>
+            </TableCell>
+            <TableCell>
+              {" "}
+              <b>Warden</b>
+            </TableCell>
+            <TableCell>
+              {" "}
+              <b>Sub-Warden</b>
+            </TableCell>
+            <TableCell>
+              {" "}
+              <b>Contact-No</b>
+            </TableCell>
+            <TableCell>
+              {" "}
+              <b>Address</b>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((datum) => (
-            <TableRow key={datum.name}>
-              <TableCell>{datum.name}</TableCell>
-              <TableCell>{datum.warden}</TableCell>
-              <TableCell>{datum.subWarden}</TableCell>
-              <TableCell>{datum.contactNo}</TableCell>
-              <TableCell>{datum.address}</TableCell>
+          {data
+            .filter((datum) => {
+              if (searchTerm == "") {
+                return datum;
+              } else if (
+                datum.name.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return datum;
+              }
+            })
+            .map((datum) => (
+              <TableRow key={datum.name}>
+                <TableCell>{datum.name}</TableCell>
+                <TableCell>{datum.warden}</TableCell>
+                <TableCell>{datum.subWarden}</TableCell>
+                <TableCell>{datum.contactNo}</TableCell>
+                <TableCell>{datum.address}</TableCell>
+                {role === "admin" && workPlace === "welfare" && (
+                  <>
+                    <TableCell align="right">
+                      <Button
+                        variant="contained"
+                        href={`/dashboard/hosteledit/${datum._id}`}
+                        color="primary"
+                      >
+                        Edit
+                      </Button>
+                    </TableCell>
 
-              <TableCell align="right">
-                <Button
-                  variant="contained"
-                  href={`/dashboard/hosteledit/${datum._id}`}
-                  color="primary"
-                >
-                  Edit
-                </Button>
-              </TableCell>
-              <TableCell align="right">
-                <Button
-                  variant="contained"
-                  onClick={() => handleDelete(datum._id)}
-                  color="secondary"
-                >
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+                    <TableCell align="right">
+                      <Button
+                        variant="contained"
+                        onClick={() => handleDelete(datum._id)}
+                        color="secondary"
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </>
+                )}
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </React.Fragment>

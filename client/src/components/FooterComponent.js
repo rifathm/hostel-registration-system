@@ -29,19 +29,17 @@ function Footer(props) {
           <div className="col-7 col-sm-5">
             <h5>Address</h5>
             <address>
-              No x, Nachchimar Road
+              No 11, Nachchimar Road
               <br />
               Thirunelvely, Jaffna
               <br />
               Sri Lanka <br />
-              <i className="fa fa-phone fa-lg"></i>: xxxxxxxxx
+              <i className="fa fa-phone fa-lg"></i>: 0211234567
               <br />
-              <i className="fa fa-fax fa-lg"></i>: xxxxxxxxx
+              <i className="fa fa-fax fa-lg"></i>: 0211234567
               <br />
               <i className="fa fa-envelope fa-lg"></i>:{" "}
-              <a href="mailto:xxxxxxxxx@univ.jfn.ac.lk">
-                xxxxxxxxx@univ.jfn.ac.lk
-              </a>
+              <a href="mailto:xxxxxxxxx@univ.jfn.ac.lk">admin@univ.jfn.ac.lk</a>
             </address>
           </div>
           <div className="col-12 col-sm-4 align-self-center">
@@ -84,11 +82,7 @@ function Footer(props) {
         </div>
         <div className="row justify-content-center">
           <div className="col-auto">
-            <p>
-              © Copyright 2020 University of Jaffna
-              <br />
-              All rights Reserved.
-            </p>
+            <p>Copyright © University of Jaffna 2021.</p>
           </div>
         </div>
       </div>

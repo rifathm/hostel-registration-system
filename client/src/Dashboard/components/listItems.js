@@ -4,6 +4,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
+import CancelScheduleSendIcon from "@material-ui/icons/CancelScheduleSend";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import HomeIcon from "@material-ui/icons/Home";
 import DescriptionIcon from "@material-ui/icons/Description";
@@ -73,6 +74,12 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary="Users" />
           </ListItem>
+          <ListItem button component={Link} to={`${url}/rejected-students`}>
+            <ListItemIcon>
+              <CancelScheduleSendIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Rejected Applications" />
+          </ListItem>
         </>
       )}
 
@@ -107,6 +114,12 @@ export const MainListItems = () => {
               <AssignmentIndIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Hostels" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/feedback`}>
+            <ListItemIcon>
+              <FeedbackIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Feedbacks" />
           </ListItem>
         </>
       )}
@@ -143,6 +156,12 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary="Hostels" />
           </ListItem>
+          <ListItem button component={Link} to={`${url}/feedback`}>
+            <ListItemIcon>
+              <FeedbackIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Feedbacks" />
+          </ListItem>
         </>
       )}
 
@@ -172,6 +191,12 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary="Students" />
           </ListItem>
+          <ListItem button component={Link} to={`${url}/feedback`}>
+            <ListItemIcon>
+              <FeedbackIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Feedbacks" />
+          </ListItem>
         </>
       )}
 
@@ -200,6 +225,12 @@ export const MainListItems = () => {
               <AssignmentIndIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="Students" />
+          </ListItem>
+          <ListItem button component={Link} to={`${url}/feedback`}>
+            <ListItemIcon>
+              <FeedbackIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Feedbacks" />
           </ListItem>
         </>
       )}

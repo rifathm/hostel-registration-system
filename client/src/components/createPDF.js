@@ -21,7 +21,7 @@ export default class example extends Component {
       <div>
         <ReactToPrint
           trigger={() => {
-            return <a href="#">Print</a>;
+            return <button>Print</button>;
           }}
           content={() => this.componentRef}
           copyStyles

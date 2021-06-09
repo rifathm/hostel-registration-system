@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { deleteFromStorage, getFromStorage } from "../../utils/storage";
 import { withRouter, Link } from "react-router-dom";
+import axios from "axios";
 
 const ContextMenu = ({ history }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,10 +27,16 @@ const ContextMenu = ({ history }) => {
     handleClose();
   };
 
+  useState(() => {
+    axios
+      .get("http://localhost:5000/user/")
+      .then((data) => setData(data.data.user));
+  }, []);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const [data, setData] = useState([]);
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -59,6 +66,7 @@ const ContextMenu = ({ history }) => {
         onClose={handleClose}
       >
         <MenuItem onClick={logOut}>Logout</MenuItem>
+        <MenuItem>EditProfile</MenuItem>
       </Menu>
     </div>
   );

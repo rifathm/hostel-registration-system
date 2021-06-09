@@ -1,50 +1,37 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const exphbs = require("express-handlebars");
+const hbs = require("nodemailer-express-handlebars");
 const nodemailer = require("nodemailer");
-const path = require("path");
-const { getMaxListeners } = require("process");
 
-const app = express();
+require("dotenv").config();
 
-// // view engine setup
-// app.engine("handlebars", exphbs());
-// app.set("view engine", "handlebars");
-
-// //static folder
-// app.use("/", express.static(path.join(__dirname, "")));
-
-// //body parser middleware
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-
-// app.get("/", (req, res) => {
-//   res.send("hello");
-// });
-
-// app.listen(3000, () => console.log("server started in port ...."));
-
-var transport = nodemailer.createTransport({
+let smtpTransport = nodemailer.createTransport({
   service: "gmail",
+  port: 465,
   auth: {
-    user: "hrsadm.jfn@gmail.com",
-    pass: "asdf1234@",
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
   },
 });
 
-//send ourt email
+smtpTransport.use(
+  "compile",
+  hbs({
+    viewEngine: "express-handlebars",
+    viewPath: "./views/",
+  })
+);
 
-var mailOptions = {
+let mailOptions = {
   from: "hrsadm.jfn@gmail.com",
-  to: "rifadhmuhammadh96@gmail.com",
+  to: "rifadhmuhammadh96@gmail.com , raeesmohammed356@gmail.com ",
   subject: " Your Registration form has been sent to approval",
-  text: "Your application for hostel registration form sent to dean for recommendation",
+  text: "received from raisha farwin aaapli",
+  template: "mail",
 };
 
-transport.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
+smtpTransport.sendMail(mailOptions, function (err, data) {
+  if (err) {
+    console.log(err);
   } else {
-    console.log("Email sent " + info.reponse);
+    console.log("Success");
   }
 });
