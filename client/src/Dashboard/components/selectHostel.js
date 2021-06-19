@@ -11,59 +11,43 @@ import {
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import { hostels } from "../../utils/data";
 
-class EditUser extends Component {
+class SelectHostel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      role: "",
-      workPlace: "",
-      password: "",
+      fullName: "",
+      regNo: "",
+      faculty: "",
+      course: "",
+      selectedHostel: "",
 
       touched: {
-        firstName: false,
-        lastName: false,
-        email: false,
-        role: false,
-        workPlace: false,
-        password: false,
+        fullName: false,
+        regNo: false,
+        faculty: false,
+        course: false,
+        selectedHostel: false,
       },
       img: { preview: "", raw: "" },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleImgUploadChange = this.handleImgUploadChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`/user/${this.props.match.params.id}`).then((data) => {
-      const { firstName, fullName, email, role, workPlace, password } =
-        data.data.user;
-      console.log(data);
+    axios.get(`/students/${this.props.match.params.id}`).then(({ data }) => {
+      const { fullName, regNo, faculty, course, selectedHostel } = data.student;
       this.setState({
-        firstName,
         fullName,
-        email,
-        role,
-        workPlace,
-        password,
+        regNo,
+        faculty,
+        course,
+        selectedHostel,
       });
     });
-  }
-
-  handleImgUploadChange(e) {
-    if (e.target.files.length) {
-      this.setState({
-        img: {
-          preview: URL.createObjectURL(e.target.files[0]),
-          raw: e.target.files[0],
-        },
-      });
-    }
   }
 
   handleInputChange(event) {
@@ -80,11 +64,16 @@ class EditUser extends Component {
     event.preventDefault();
     const { touched, ...values } = this.state;
     axios
-      .put(`/user/${this.props.match.params.id}`, {
-        _id: this.props.match.params.id,
-        ...values,
-      })
-      .then(() => alert("successfully updated"))
+      .put(
+        `/students/${this.props.match.params.id}`,
+        {
+          _id: this.props.match.params.id,
+          ...values,
+        },
+        { isVerified: true }
+      )
+
+      .then(() => alert("Hostel Selected"))
       .then((res) => {
         window.location = `/dashboard`;
       })
@@ -105,7 +94,7 @@ class EditUser extends Component {
       <div className="container">
         <div className="row">
           <div className="col-12 col-sm-8">
-            <h4>EDIT YOUR PROFILE</h4>
+            <h4>Hostel Selection</h4>
           </div>
         </div>
 
@@ -117,17 +106,6 @@ class EditUser extends Component {
               <div className="col-12">
                 <FormGroup row>
                   <Col md={8}>
-                    <Label htmlFor="firstName">
-                      <strong>FIRST NAME</strong>
-                    </Label>
-                    <Input
-                      type="text"
-                      name="firstName"
-                      value={this.state.firstName}
-                      onBlur={this.handleBlur("firstName")}
-                      onChange={this.handleInputChange}
-                    />
-
                     <Label htmlFor="fullName">
                       <strong>FULL NAME</strong>
                     </Label>
@@ -136,62 +114,74 @@ class EditUser extends Component {
                       name="fullName"
                       value={this.state.fullName}
                       onBlur={this.handleBlur("fullName")}
-                      onChange={this.handleInputChange}
                     />
 
-                    <Label htmlFor="email">
-                      <strong>EMAIL</strong>
-                    </Label>
-                    <Input
-                      type="email"
-                      name="email"
-                      value={this.state.email}
-                      onBlur={this.handleBlur("email")}
-                      onChange={this.handleInputChange}
-                    />
-
-                    <Label htmlFor="role">
-                      <strong>ROLE</strong>
+                    <Label htmlFor="regNo">
+                      <strong>REGISTRATION NO</strong>
                     </Label>
                     <Input
                       type="text"
-                      name="role"
-                      value={this.state.role}
-                      onBlur={this.handleBlur("role")}
-                      onChange={this.handleInputChange}
+                      name="regNo"
+                      value={this.state.regNo}
+                      onBlur={this.handleBlur("regNo")}
                     />
-                    <Label htmlFor="workPlace">
-                      <strong>WORK-PLACE</strong>
+
+                    <Label htmlFor="faculty">
+                      <strong>FACULTY</strong>
+                    </Label>
+                    <Input
+                      type="faculty"
+                      name="faculty"
+                      value={this.state.faculty}
+                      onBlur={this.handleBlur("faculty")}
+                    />
+
+                    <Label htmlFor="course">
+                      <strong>COURSE OF STUDY</strong>
                     </Label>
                     <Input
                       type="text"
-                      name="workPlace"
-                      value={this.state.workPlace}
-                      onBlur={this.handleBlur("workPlace")}
-                      onChange={this.handleInputChange}
+                      name="course"
+                      value={this.state.course}
+                      onBlur={this.handleBlur("course")}
                     />
-
-                    <Label htmlFor="password">
-                      <strong>password</strong>
+                    <Label htmlFor="selectedHostel">
+                      <strong>SELECT A HOSTEL</strong>
                     </Label>
                     <Input
-                      type="password"
-                      name="password"
-                      value={this.state.password}
-                      onBlur={this.handleBlur("password")}
+                      type="select"
+                      name="selectedHostel"
+                      value={this.state.selectedHostel}
+                      onBlur={this.handleBlur("selectedHostel")}
                       onChange={this.handleInputChange}
-                    />
+                    >
+                      {hostels.map((opt, id) => (
+                        <option value={opt} key={id}>
+                          {opt}
+                        </option>
+                      ))}
+                    </Input>
                   </Col>
                 </FormGroup>
 
                 <FormGroup row>
-                  <Col md={{ size: 2, offset: 10 }}>
+                  <Col md={6}>
+                    <Button
+                      type="submit"
+                      href={`/view-student/${this.props.match.params.id}`}
+                      //  href={`/create-pdf/${this.props.match.params.id}`}
+                      color="primary"
+                    >
+                      VIEW FULL DETAILS
+                    </Button>
+                  </Col>
+                  <Col md={6}>
                     <Button
                       type="submit"
                       color="primary"
                       onClick={this.handleSubmit}
                     >
-                      UPDATE
+                      SEND
                     </Button>
                   </Col>
                 </FormGroup>
@@ -204,4 +194,4 @@ class EditUser extends Component {
   }
 }
 
-export default withRouter(EditUser);
+export default withRouter(SelectHostel);

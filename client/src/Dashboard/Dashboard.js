@@ -35,10 +35,13 @@ import EditHostel from "./views/EditHostel";
 import CreateHostel from "./components/CreateHostel";
 import createuser from "./components/createuser";
 import Hostels from "./views/Hostels";
+import EditFeedback from "./components/EditFeedback";
 import table from "./components/table";
 import Feedback from "./components/feedback";
 import Reject from "./components/rejected-students";
 import search from "./components/search";
+import SelectHostel from "./components/selectHostel";
+import feedback from "./components/feedbackView";
 import { getFromStorage } from "../utils/storage";
 
 import { withRouter } from "react-router-dom";
@@ -293,6 +296,12 @@ const Dashboard = ({ history }) => {
             <Route path={`${path}/feedback`} component={Feedback} />
             <Route path={`${path}/rejected-students`} component={Reject} />
             <Route path={`${path}/search`} component={search} />
+            <Route path={`${path}/feed-back/:id`} component={EditFeedback} />
+            <Route
+              path={`${path}/select-hostel/:id`}
+              component={SelectHostel}
+            />
+            <Route path={`${path}/feedbacks`} component={feedback} />
           </Switch>
           <Box pt={4}>
             <Copyright />

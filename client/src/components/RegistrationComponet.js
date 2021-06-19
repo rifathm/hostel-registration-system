@@ -15,21 +15,19 @@ import {
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
-import { districts, faculties, hostels } from "../utils/data";
-// import { selectFields } from "express-validator/src/select-fields";
+import {
+  districts,
+  faculties,
+  hostels,
+  GSDivisions,
+  DSDivisions,
+} from "../utils/data";
 
-// const Demo = () => {
-//   const [district, setDistrict] = useState(data[0].district)
-//   const [division, setDivision] = useState(data.filter((obj) => obj.district === district)[0].division[0])
-//   return (<div>
-//     <select value={district} onChange={e => setDistrict(e.target.value)}>
-//       {data.map((opt, idx) => <option key={idx}>{ opt.district }</option>)}
-//     </select>
-//     <select value={division} onChange={e => setDivision(e.target.value)}>
-//       {data.filter(obj => obj.district === district)[0].division.map((opt, idx) => <option key={idx}>{ opt  }</option>)}
-//     </select>
-//   </div>)
-// }
+const places = {
+  district: districts,
+  // GSdivision: GSdivisions,
+  DSdivision: DSDivisions,
+};
 
 class Registration extends Component {
   constructor(props) {
@@ -44,7 +42,7 @@ class Registration extends Component {
       sex: "N/A",
       residentalAddress: "",
       medicalIssues: "",
-      district: districts[0].district,
+      district: "",
       year: "N/A",
       GSdivision: "",
       DSdivision: "N/A",
@@ -180,6 +178,9 @@ class Registration extends Component {
       this.state.regNo,
       this.state.name
     );
+
+    const { district } = this.state;
+
     return (
       <div className="container">
         <div className="container">
@@ -273,7 +274,12 @@ class Registration extends Component {
 
                   <Col md={3}>
                     {this.state.img.preview ? (
-                      <img alt="dummy" width="200" height="180" />
+                      <img
+                        src={this.state.img.preview}
+                        alt="dummy"
+                        width="200"
+                        height="180"
+                      />
                     ) : (
                       <Card>
                         <CardImg
@@ -330,11 +336,11 @@ class Registration extends Component {
                       onChange={this.handleInputChange}
                       value={this.state.DSdivision}
                     >
-                      {districts.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
+                      {/* {places[district].map((DSdivision, idx) => (
+                        <option value={DSdivision} key={idx}>
+                          {DSdivision}
                         </option>
-                      ))}
+                      ))} */}
                     </Input>
                   </Col>
 
@@ -468,12 +474,13 @@ class Registration extends Component {
                       onChange={this.handleInputChange}
                     >
                       <option value="1">1ST YEAR</option>
-                      <option value="2">4TH YEAR</option>
+                      <option value="4">4TH YEAR</option>
                     </Input>
                   </Col>
                   <Col md={4}>
                     <Label htmlFor="preference">
-                      <strong>HOSTELPREFERENCE</strong>
+                      <strong>HOSTEL PREFERENCE</strong>
+                      <p>(if already stayed in hostel</p>
                     </Label>
                     <Input
                       type="select"

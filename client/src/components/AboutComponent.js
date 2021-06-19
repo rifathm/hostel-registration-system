@@ -55,15 +55,27 @@ function About(props) {
             <h2>Our History</h2>
             <p>Started in 2000.... //History</p>
             <p>
-              Student welfare branch maintains 17 hostels for the undergraduate
-              students in the following locations. Students from the families in
-              the lower-income group and from distant residences are given
-              preference. Rs.XXXX is charged as the hostel fee for an academic
-              year and Rs.xxxx is charged as a hostel admission fee. The warden
-              is the senior member of the Academic Staff and he/she is
-              responsible for the disciplinary matters in hostels under the
-              guidance and control of the Vice-Chancellor. The Sub – Warden is a
-              resident fulltime sub-warden resides in each hostel.
+              Presently, the University has Eight permanent hostels, Seven
+              temporary private houses and the number of students, who were
+              provided with accommodation by the University. Six private houses
+              at Inuvil, Kokuvil East, Kopay South, Manipay, Kandarmadam,
+              Kaithady and Chunnakam were taken on lease during this year.
+              <br />
+              During the year 2019, 3202 undergraduate were provided
+              accommodation in the University Hostels and 158 students were
+              accommodated in the leased-out houses. Accordingly, the University
+              had provided hostel accommodation for 2973 undergraduates which
+              are nearly 34 % out of 8,762, the total student community.
+            </p>
+            <h3>Hostel Admission</h3>
+            <p>
+              Students from the families in the lower income group and from
+              distant residences are given preference. Rs.2,650/-(Refendable) is
+              charged as the hostel fee for an academic year. Warden is the
+              senior member of the Academic Staff and he/she is responsible for
+              the disciplinary matters in hostels under the guidance and control
+              of the Vice-Chancellor. The Sub – Warden is a resident fulltime
+              sub-warden resides in each hostel.
             </p>
           </div>
           <div className="col-12 col-md-6">

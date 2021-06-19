@@ -29,17 +29,15 @@ function Footer(props) {
           <div className="col-7 col-sm-5">
             <h5>Address</h5>
             <address>
-              No 11, Nachchimar Road
+              PO Box 57,
               <br />
               Thirunelvely, Jaffna
               <br />
               Sri Lanka <br />
-              <i className="fa fa-phone fa-lg"></i>: 0211234567
-              <br />
-              <i className="fa fa-fax fa-lg"></i>: 0211234567
+              <i className="fa fa-phone fa-lg"></i>: (+94) 021 221 8100
               <br />
               <i className="fa fa-envelope fa-lg"></i>:{" "}
-              <a href="mailto:xxxxxxxxx@univ.jfn.ac.lk">admin@univ.jfn.ac.lk</a>
+              <a href="mailto:xxxxxxxxx@univ.jfn.ac.lk">info@univ.jfn.ac.lk</a>
             </address>
           </div>
           <div className="col-12 col-sm-4 align-self-center">

@@ -57,7 +57,9 @@ class EditHostel extends Component {
         ...values,
       })
       .then(() => alert("successfully updated"))
-
+      .then((res) => {
+        window.location = `/dashboard`;
+      })
       .catch((err) => alert(err));
 
     console.log(this.state);

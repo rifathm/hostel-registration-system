@@ -1,54 +1,197 @@
-import axios from "axios";
-import React from "react";
+import React, { Component } from "react";
+import "whatwg-fetch";
 import { FormGroup, Input, Label } from "reactstrap";
+import { withRouter } from "react-router-dom";
+// import { getFromStorage, setInStorage } from "../utils/storage";
+import { faculties, hostels } from "../../utils/data";
 
-export default class signUp extends React.Component {
-  state = {
-    firstName: "",
-    fullName: "",
-    email: "",
-    role: "",
-    workPlace: "",
-    Password: "",
-  };
+const workplaces = {
+  admin: ["welfare"],
+  dean: faculties,
+  warden: hostels,
+};
 
-  handleChange = (event) => {
-    this.setState({
-      firstName: event.target.value,
-      fullName: event.target.value,
-      email: event.target.value,
-      role: event.target.value,
-      workPlace: event.target.value,
-      Password: event.target.value,
-    });
-  };
+class SignUpCom extends Component {
+  constructor(props) {
+    super(props);
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const user = {
-      firstName: this.state.firstName,
-      fullName: this.state.fullName,
-      email: this.state.email,
-      role: this.state.role,
-      workPlace: this.state.workPlace,
-      Password: this.state.password,
+    this.state = {
+      isLoading: false,
+      token: "",
+      signUpError: "",
+      signUpFirstName: "",
+      signUpEmail: "",
+      signUpFullName: "",
+      signUpPassword: "",
+      Role: "admin",
+      workPlace: "welfare",
+      touched: {
+        token: false,
+        signUpError: false,
+        signUpFirstName: false,
+        signUpEmail: false,
+        signUpfullName: false,
+        signUpPassword: false,
+        role: false,
+        workPlace: false,
+      },
     };
 
-    axios.post("/user/signUp/", { user }).then((res) => {
-      console.log(res);
-      console.log(res.data);
+    this.onTextboxChangeSignUpEmail =
+      this.onTextboxChangeSignUpEmail.bind(this);
+    this.onTextboxChangeSignUpPassword =
+      this.onTextboxChangeSignUpPassword.bind(this);
+    this.onTextboxChangeSignUpFirstName =
+      this.onTextboxChangeSignUpFirstName.bind(this);
+    this.onTextboxChangeSignUpFullName =
+      this.onTextboxChangeSignUpFullName.bind(this);
+    this.onTextboxChangeRole = this.onTextboxChangeRole.bind(this);
+
+    this.onSignUp = this.onSignUp.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  // componentDidMount() {
+  //   const obj = getFromStorage("the_main_app");
+
+  //   if (obj && obj.token) {
+  //     const { token } = obj;
+  //     //verify token
+  //     fetch("/verify?token=" + token)
+  //       .then((res) => res.json())
+  //       .then((json) => {
+  //         if (json.success) {
+  //           this.setState({
+  //             token,
+  //             isLoading: "false",
+  //           });
+  //         } else {
+  //           this.setState({
+  //             isLoading: false,
+  //           });
+  //         }
+  //       });
+  //   } else {
+  //     this.setState({
+  //       isLoading: false,
+  //     });
+  //   }
+  // }
+
+  onTextboxChangeSignUpEmail(event) {
+    this.setState({
+      signUpEmail: event.target.value,
     });
-  };
+  }
+
+  onTextboxChangeSignUpPassword(event) {
+    this.setState({
+      signUpPassword: event.target.value,
+    });
+  }
+
+  onTextboxChangeSignUpFirstName(event) {
+    this.setState({
+      signUpFirstName: event.target.value,
+    });
+  }
+
+  onTextboxChangeSignUpFullName(event) {
+    this.setState({
+      signUpFullName: event.target.value,
+    });
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  onTextboxChangeRole(event) {
+    this.setState({
+      Role: event.target.value,
+    });
+  }
+
+  onSignUp() {
+    //grab State
+    const {
+      signUpFirstName,
+      signUpFullName,
+      signUpEmail,
+      signUpPassword,
+      Role,
+      workPlace,
+    } = this.state;
+
+    this.setState({
+      isLoading: true,
+    });
+
+    // POST request to backend
+    fetch("/user/signUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: signUpFirstName,
+        fullName: signUpFullName,
+        email: signUpEmail,
+        password: signUpPassword,
+        role: Role,
+        workPlace: workPlace,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success) {
+          this.setState({
+            signupError: json.message,
+            isLoading: false,
+            signUpEmail: "",
+            signUpPassword: "",
+            signUpFirstName: "",
+            signUpFullName: "",
+            Role: "admin",
+            workPlace: "welfare",
+          });
+
+          this.props.history.push("/dashboard");
+        } else {
+          this.setState({
+            signupError: json.message,
+            isLoading: false,
+          });
+        }
+      });
+  }
 
   render() {
+    const {
+      isLoading,
+      //token,
+      signUpFirstName,
+      signUpEmail,
+      signUpFullName,
+      signUpPassword,
+      signUpError,
+      Role,
+      workPlace,
+    } = this.state;
+
+    if (isLoading) {
+      return <div>Succesfully Signed-Up </div>;
+    }
+
     return (
       <div>
-        <div className="col-8 ">
+        <div>
+          {signUpError ? <p>{signUpError}</p> : null}
           <div className="row">
             <div className="col-12 ">
               <p>
-                Create User
+                SIGNUP
                 <br />
                 Enter your credentials.
               </p>
@@ -58,10 +201,10 @@ export default class signUp extends React.Component {
             <Label htmlFor="firstName">FisrtName</Label>
             <Input
               type="text"
-              name="firstName"
+              name="FirstName"
               placeholder="Enter your FirstName"
-              value={this.firstName}
-              onChange={this.handleChange}
+              value={signUpFirstName}
+              onChange={this.onTextboxChangeSignUpFirstName}
             />
           </FormGroup>
           <FormGroup>
@@ -69,9 +212,9 @@ export default class signUp extends React.Component {
             <Input
               type="text"
               name="fullName"
-              placeholder="Enter your Full Name"
-              value={this.fullName}
-              onChange={this.handleChange}
+              placeholder="Enter your fullName"
+              value={signUpFullName}
+              onChange={this.onTextboxChangeSignUpFullName}
             />
           </FormGroup>
           <FormGroup>
@@ -80,8 +223,8 @@ export default class signUp extends React.Component {
               type="email"
               name="email"
               placeholder="Enter your email"
-              value={this.email}
-              onChange={this.handleChange}
+              value={signUpEmail}
+              onChange={this.onTextboxChangeSignUpEmail}
             />
           </FormGroup>
           <FormGroup>
@@ -90,30 +233,28 @@ export default class signUp extends React.Component {
               type="select"
               name="role"
               placeholder="Enter your Role"
-              onChange={this.handleChange}
-              value={this.role}
-              //   onBlur={this.handleBlur("role")}
+              value={Role}
+              onChange={this.onTextboxChangeRole}
             >
-              <option value="admin">Admin</option>
+              <option value="admin">admin</option>
               <option value="dean">Dean</option>
               <option value="warden">Warden</option>
             </Input>
           </FormGroup>
-
           <FormGroup>
             <Label htmlFor="workPlace">Work Place</Label>
             <Input
               type="select"
               name="workPlace"
               placeholder="Enter your Working Place"
-              onChange={this.handleChange}
-              value={this.workPlace}
-              //onBlur={this.handleBlur("workPlace")}
+              onChange={this.handleInputChange}
+              value={workPlace}
             >
-              <option value="welfare">Welfare</option>
-              <option value="science">Science</option>
-              <option value="arts">Arts</option>
-              <option value="kondavil">Kondavil</option>
+              {workplaces[Role].map((workplace, idx) => (
+                <option value={workplace} key={idx}>
+                  {workplace}
+                </option>
+              ))}
             </Input>
           </FormGroup>
           <FormGroup>
@@ -122,21 +263,32 @@ export default class signUp extends React.Component {
               type="password"
               name="password"
               placeholder="Enter password"
-              value={this.password}
-              onChange={this.handleChange}
+              value={signUpPassword}
+              onChange={this.onTextboxChangeSignUpPassword}
             />
           </FormGroup>
           <button
             class="btn btn-primary"
-            onClick={this.handleSubmit}
+            onClick={this.onSignUp}
             type="button"
             value="submit"
             color="primary"
           >
-            Create User
+            SignUp
           </button>
+          <br />
+          <button
+            type="button"
+            class="btn btn-link"
+            onClick={this.props.onAuthViewChange}
+          >
+            Already have an Account? SignIn
+          </button>
+          <br /> <br />
         </div>
       </div>
     );
   }
 }
+
+export default withRouter(SignUpCom);

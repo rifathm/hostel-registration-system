@@ -67,7 +67,7 @@ export default function PendingApplications() {
               <TableCell>{datum.fullName}</TableCell>
               <TableCell>{datum.faculty}</TableCell>
               <TableCell>{datum.year}</TableCell>
-              <TableCell align="right">
+              <TableCell>
                 <Button
                   variant="contained"
                   // href={`/view-student/${datum._id}`}

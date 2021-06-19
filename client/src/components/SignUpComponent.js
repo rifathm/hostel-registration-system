@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import "whatwg-fetch";
 import { FormGroup, Input, Label } from "reactstrap";
+import { withRouter } from "react-router-dom";
 // import { getFromStorage, setInStorage } from "../utils/storage";
+import { faculties, hostels } from "../utils/data";
+
+const workplaces = {
+  admin: ["welfare"],
+  dean: faculties,
+  warden: hostels,
+};
 
 class SignUpCom extends Component {
   constructor(props) {
@@ -40,6 +48,7 @@ class SignUpCom extends Component {
     this.onTextboxChangeRole = this.onTextboxChangeRole.bind(this);
 
     this.onSignUp = this.onSignUp.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
   // componentDidMount() {
   //   const obj = getFromStorage("the_main_app");
@@ -92,6 +101,12 @@ class SignUpCom extends Component {
     });
   }
 
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
   onTextboxChangeRole(event) {
     this.setState({
       Role: event.target.value,
@@ -138,10 +153,11 @@ class SignUpCom extends Component {
             signUpPassword: "",
             signUpFirstName: "",
             signUpFullName: "",
-            Role: "",
-            workPlace: "",
+            Role: "admin",
+            workPlace: "welfare",
           });
-          this.props.history.push("/dashboard");
+
+          this.props.history.push("/");
         } else {
           this.setState({
             signupError: json.message,
@@ -234,10 +250,11 @@ class SignUpCom extends Component {
               onChange={this.handleInputChange}
               value={workPlace}
             >
-              <option value="welfare">Welfare</option>
-              <option value="science">Science</option>
-              <option value="arts">Arts</option>
-              <option value="kondavil">Kondavil</option>
+              {workplaces[Role].map((workplace, idx) => (
+                <option value={workplace} key={idx}>
+                  {workplace}
+                </option>
+              ))}
             </Input>
           </FormGroup>
           <FormGroup>
@@ -274,4 +291,4 @@ class SignUpCom extends Component {
   }
 }
 
-export default SignUpCom;
+export default withRouter(SignUpCom);

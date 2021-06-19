@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import Layout from "./Layout";
 import axios from "axios";
+import Map from "./Map";
 
 class Contact extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Contact extends Component {
       .post("http://localhost:5000/feedback/createFeedback", values)
 
       .then((res) => {
+        window.location = `/`;
         console.log(res.data.data._id);
       })
 
@@ -128,23 +130,35 @@ class Contact extends Component {
             <div className="col-12 col-sm-4 offset-sm-1">
               <h5>Address</h5>
               <address>
-                No x, Nachchimar Road
+                PO Box 57,
                 <br />
                 Thirunelvely, Jaffna
                 <br />
                 Sri Lanka <br />
-                <i className="fa fa-phone"></i>: xxxxxxxxx
-                <br />
-                <i className="fa fa-fax"></i>: xxxxxxxxx
+                <i className="fa fa-phone"></i>: (+94) 021 221 8100
                 <br />
                 <i className="fa fa-envelope"></i>:{" "}
                 <a href="mailto:xxxxxxxxx@univ.jfn.ac.lk">
-                  xxxxxxxxx@univ.jfn.ac.lk
+                  info@univ.jfn.ac.lk
                 </a>
               </address>
             </div>
             <div className="col-12 col-sm-6 offset-sm-1">
               <h5>Map of our Location-Student Welfare Division</h5>
+              <Map
+                location={
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.95530886328!2d80.01985261461274!3d9.684855593067683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5413b6aaaa91%3A0x434111cf1150e06b!2z4K6v4K6-4K604K-N4K6q4K-N4K6q4K6-4K6j4K6q4K-NIOCuquCusuCvjeCuleCusuCviOCuleCvjeCuleCutOCuleCuruCvjSAtIOC2uuC3j-C2tOC2seC2uiDgt4Dgt5Lgt4Hgt4rgt4Dgt4Dgt5Lgtq_gt4rigI3gtrrgt4_gtr3gtrogLSBVbml2ZXJzaXR5IG9mIEphZmZuYQ!5e0!3m2!1sen!2slk!4v1623502889486!5m2!1sen!2slk"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                  >
+                    {" "}
+                  </iframe>
+                }
+              />
             </div>
             <div className="col-12 col-sm-11 offset-sm-1">
               <div className="btn-group" role="group">
@@ -275,7 +289,7 @@ class Contact extends Component {
                       value={this.state.contactType}
                       onChange={this.handleInputChange}
                     >
-                      <option>Tel.</option>
+                      <option>Tel</option>
                       <option>Email</option>
                     </Input>
                   </Col>

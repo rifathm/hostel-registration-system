@@ -89,24 +89,7 @@ class createhostel extends Component {
     })
       .then((res) => res.json())
       .then((json) => {
-        if (json.success) {
-          this.setState({
-            Error: json.message,
-            isLoading: false,
-            name: "",
-            subWarden: "",
-            warden: "",
-            contactNo: "",
-            address: "",
-            location: "",
-          });
-          this.props.history.push("/dashboard");
-        } else {
-          this.setState({
-            Error: json.message,
-            isLoading: false,
-          });
-        }
+        window.location = `/dashboard`;
       });
   }
 
