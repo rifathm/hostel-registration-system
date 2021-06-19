@@ -1,16 +1,6 @@
-<<<<<<< HEAD
 .row-header {
   margin: 0px auto;
   padding: 0px auto;
-=======
-* {
-  font-family: cursive;
-}
-
-.row-header{
-    margin:0px auto;
-    padding:0px auto;
->>>>>>> 95b90e9ce7bd504620b3273442e2c8fd29faad7a
 }
 
 .row-content {
@@ -43,7 +33,6 @@ address {
 }
 
 .carousel {
-<<<<<<< HEAD
   margin: 2px auto;
 }
 .carousel .carousel-item {
@@ -53,17 +42,6 @@ address {
   object-fit: contain;
   display: none;
 }
-
 * {
   font-family: cursive;
 }
-=======
-   margin:2px auto; }
-    .carousel .carousel-item {
-     }
-      .carousel .carousel-item img {
-          height: 100% !important;
-      object-fit: contain;
-      display: none;
-    }
->>>>>>> 95b90e9ce7bd504620b3273442e2c8fd29faad7a
