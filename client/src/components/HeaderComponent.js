@@ -54,11 +54,11 @@ class Header extends Component {
     this.toggleModal();
     alert(
       "Username: " +
-        this.username.value +
-        " Password: " +
-        this.password.value +
-        " Remember: " +
-        this.remember.checked
+      this.username.value +
+      " Password: " +
+      this.password.value +
+      " Remember: " +
+      this.remember.checked
     );
     event.preventDefault();
   }
@@ -128,6 +128,8 @@ class Header extends Component {
                   src="assets/images/UOJLOGO2.jpg"
                   className="img-fluid rounded-circle"
                   alt="LOGOUOJ"
+                  height="60"
+                  width="150"
                 />
               </div>
               <div className="col-12 col-sm-6">
