@@ -6,7 +6,16 @@ export const HOSTELS = [
     subWarden: "	Ms.R.Subani",
     address: "Ramanathan Road, Thirunelvely,",
     tel: "021 222 2306",
-    location: "//Map location",
+    location: (
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.8134159005854!2d80.03307861461288!3d9.696960493059345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5443ecd5a3af%3A0xb3ec1e654dddf196!2sKondavil%20Hostel%20complex%20-%20University%20of%20Jaffna!5e0!3m2!1sen!2slk!4v1623502062699!5m2!1sen!2slk"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    ),
   },
   {
     id: 1,
@@ -14,7 +23,16 @@ export const HOSTELS = [
     subWarden: "Mr.P.Poologanathan",
     address: "	Ramanathan Road, Thirunelvely,",
     tel: "	021 222 2304",
-    location: "//Map location",
+    location: (
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.8134159005854!2d80.03307861461288!3d9.696960493059345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5443ecd5a3af%3A0xb3ec1e654dddf196!2sKondavil%20Hostel%20complex%20-%20University%20of%20Jaffna!5e0!3m2!1sen!2slk!4v1623502062699!5m2!1sen!2slk"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    ),
   },
   {
     id: 2,
@@ -22,7 +40,16 @@ export const HOSTELS = [
     subWarden: "Ms.M.Lalithamani",
     address: "	Kaithady",
     tel: "	021 205 7144",
-    location: "//Map location",
+    location: (
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.8134159005854!2d80.03307861461288!3d9.696960493059345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5443ecd5a3af%3A0xb3ec1e654dddf196!2sKondavil%20Hostel%20complex%20-%20University%20of%20Jaffna!5e0!3m2!1sen!2slk!4v1623502062699!5m2!1sen!2slk"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    ),
   },
   {
     id: 3,

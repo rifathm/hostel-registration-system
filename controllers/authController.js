@@ -6,6 +6,7 @@ const UserSession = require("../models/UserSession");
 const registerUser = async (req, res, next) => {
   const { body } = req;
   const { firstName, fullName, password, email, workPlace, role } = body;
+  console.log(body);
 
   if (!firstName) {
     return res.send({
@@ -48,8 +49,6 @@ const registerUser = async (req, res, next) => {
     });
   }
 
-  email = email.toLowerCase();
-
   User.find(
     {
       email: email,
@@ -75,19 +74,21 @@ const registerUser = async (req, res, next) => {
       newUser.role = role;
       newUser.workPlace = workPlace;
       newUser.password = newUser.generateHash(password);
-      newUser.save((err) => {
-        console.log(err);
-        if (err) {
-          return res.send({
+      newUser
+        .save()
+        .then(
+          res.send({
+            success: true,
+            message: "SignedUp successfully",
+          })
+        )
+        .catch((err) => {
+          console.log(err);
+          res.send({
             success: false,
             message: "Error:Server Error",
           });
-        }
-        return res.send({
-          success: true,
-          message: "SignedUp successfully",
         });
-      });
     }
   );
 };

@@ -11,9 +11,10 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import { getFromStorage } from "../../utils/storage";
 import { ROLE } from "../../utils/roles";
-import { FormGroup, Input, Label } from "reactstrap";
+import { Input } from "reactstrap";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { hostels } from "../../utils/data";
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -37,13 +38,6 @@ export default function PendingApplications() {
       .catch(console.log("not deleted"));
   };
 
-  const handleVerify1 = (_id) => {
-    axios
-      .put(`/students/${_id}`, { isVerified: true })
-      .then(setData((data) => data.filter((datum) => datum._id !== _id)))
-      .catch(console.log("not verified"));
-  };
-
   useState(() => {
     let query;
 
@@ -62,7 +56,7 @@ export default function PendingApplications() {
     } else if (role === ROLE.ADMIN) {
       axios
         .get(
-          `/students?&isVerified=false&isVerifiedDean=true&isVerifiedWarden=true`
+          `/students?isVerified=false&isVerifiedDean=true&isVerifiedWarden=true&state=true`
         )
 
         .then((data) => setData(data.data.students));
@@ -113,7 +107,6 @@ export default function PendingApplications() {
       axios
         .put(`/students/${_id}`, {
           isVerified: true,
-          selectedHostel: "Kondavil Male Hostel",
         })
         .then(setData((data) => data.filter((datum) => datum._id !== _id)))
         .catch(console.log("not verified"));
@@ -124,7 +117,7 @@ export default function PendingApplications() {
   const handleReject = (_id) => {
     let query;
     if (role === ROLE.DEAN) {
-      if (data.year === "1") {
+      if (data.year === "4") {
         axios
           .put(`/students/${_id}`, {
             state: false,
@@ -193,21 +186,13 @@ export default function PendingApplications() {
                 <TableCell>{datum.preference}</TableCell>
                 <TableCell>{datum.year}</TableCell>
                 <TableCell>
-                  <Input
-                    type="select"
-                    placeholder="Select Hostel"
-                    // onChange={this.handleInputChange}
-                    // value={selectedHostel}
-                    //onBlur={this.handleBlur("selectedHostel")}
+                  <Button
+                    variant="contained"
+                    href={`select-hostel/${datum._id}/`}
+                    color="primary"
                   >
-                    <option value="Kondavil Male Hoste">
-                      Kondavil Male Hostel
-                    </option>
-                    <option value="Kondavil Female Hoste">
-                      Kondavil Female Hostel
-                    </option>
-                    <option value="Jaffna">Jaffna</option>
-                  </Input>
+                    Select
+                  </Button>
                 </TableCell>
                 <TableCell align="right">
                   <div className={classes.root}>
@@ -243,7 +228,7 @@ export default function PendingApplications() {
                         <MenuItem onClick={() => handleReject(datum._id)}>
                           <a>Reject</a>
                         </MenuItem>
-                        <MenuItem onClick={handleMenu}></MenuItem>
+                        <MenuItem onClick={handleMenu}> View Details</MenuItem>
                         <MenuItem onClick={() => handleDelete(datum._id)}>
                           Delete
                         </MenuItem>

@@ -46,8 +46,10 @@ export default function Feedback() {
   };
 
   useState(() => {
+    let query;
+
     axios
-      .get(`/feedback?&isReplied=true`)
+      .get(`/feedback?&isReplied=false`)
       .then((data) => setData(data.data.inquerys));
   }, []);
 
@@ -58,6 +60,7 @@ export default function Feedback() {
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
               Student Feedbacks
+              <p font="small">Pending for Reply</p>
             </Typography>{" "}
           </Toolbar>
         </AppBar>
@@ -93,7 +96,17 @@ export default function Feedback() {
               <TableCell>{datum.email}</TableCell>
               <TableCell>{datum.contactType}</TableCell>
               <TableCell>{datum.message}</TableCell>
-              <TableCell>{datum.reply}</TableCell>
+
+              <TableCell align="right">
+                <Button
+                  variant="contained"
+                  href={`/dashboard/feed-back/${datum._id}`}
+                  // onClick={() => handleDelete(datum._id)}
+                  color="primary"
+                >
+                  Send
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

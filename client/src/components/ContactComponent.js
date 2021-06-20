@@ -57,6 +57,7 @@ class Contact extends Component {
       .post("http://localhost:5000/feedback/createFeedback", values)
 
       .then((res) => {
+        window.location = `/`;
         console.log(res.data.data._id);
       })
 

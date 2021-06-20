@@ -17,21 +17,19 @@ import axios from "axios";
 import "../App.css";
 import Layout from "./Layout";
 
-import { districts, faculties, hostels } from "../utils/data";
-// import { selectFields } from "express-validator/src/select-fields";
+import {
+  districts,
+  faculties,
+  hostels,
+  GSDivisions,
+  DSDivisions,
+} from "../utils/data";
 
-// const Demo = () => {
-//   const [district, setDistrict] = useState(data[0].district)
-//   const [division, setDivision] = useState(data.filter((obj) => obj.district === district)[0].division[0])
-//   return (<div>
-//     <select value={district} onChange={e => setDistrict(e.target.value)}>
-//       {data.map((opt, idx) => <option key={idx}>{ opt.district }</option>)}
-//     </select>
-//     <select value={division} onChange={e => setDivision(e.target.value)}>
-//       {data.filter(obj => obj.district === district)[0].division.map((opt, idx) => <option key={idx}>{ opt  }</option>)}
-//     </select>
-//   </div>)
-// }
+const places = {
+  district: districts,
+  // GSdivision: GSdivisions,
+  DSdivision: DSDivisions,
+};
 
 class Registration extends Component {
   constructor(props) {
@@ -46,7 +44,7 @@ class Registration extends Component {
       sex: "N/A",
       residentalAddress: "",
       medicalIssues: "",
-      district: districts[0].district,
+      district: "",
       year: "N/A",
       GSdivision: "",
       DSdivision: "N/A",
@@ -182,6 +180,9 @@ class Registration extends Component {
       this.state.regNo,
       this.state.name
     );
+
+    const { district } = this.state;
+
     return (
       <Layout>
         <div className="registrationform">

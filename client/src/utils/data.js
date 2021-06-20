@@ -1872,74 +1872,104 @@ export const DSDivisions = [
   },
 ];
 
-export const administrativeDistricts = [
-  "Jaffna",
-  "Kilinochchi",
-  "Mannar",
-  "Mullaitivu",
-  "Vavuniya",
-  "Puttalam",
-  "Kurunegala",
-  "Gampaha",
-  "Colombo",
-  "Kalutara",
-  "Anuradhapura",
-  "Polonnaruwa",
-  "Matale",
-  "Kandy",
-  "Nuwara Eliya",
-  "Kegalle",
-  "Ratnapura",
-  "Trincomalee",
-  "Batticaloa",
-  "Ampara",
-  "Badulla",
-  "Monaragala",
-  "Hambantota",
-  "Matara",
-  "Galle",
+export const faculties = [
+  "Arts",
+  "Science",
+  "Agriculture",
+  "Allied Health Sciences",
+  "Engineering",
+  "Medicine",
+  "Graduate Studies",
+  "Hindu Studies",
+  "Management Studies & Commerce",
 ];
 
-export const titles = ["Mr", "Mrs", "Miss", "Rev"];
+export const courses = [
+  {
+    faculties: "Science",
+    course: ["Computer Science", "Physical Science", "Bio Science"],
+  },
 
-export const faculties = ["Arts", "Science"];
+  {
+    faculties: "Arts",
+    course: [
+      "Arts in English",
+      "Arts in Tamil",
+      "Fine Arts in English",
+      "Fine Arts in Tamil",
+      "Law",
+    ],
+  },
 
-// export const faculties = [
-//   {
-//     faculty: "Agriculture",
-//     courses: [
+  {
+    faculties: "Management & Commerce",
+    course: ["Business Administartion", "Commerce", "Business Management"],
+  },
 
-//     ],
-//    },
-//   { faculty: "Allied Health Sciences",
-//     courses: [
+  {
+    faculties: "Medicine",
+    course: ["MBBS"],
+  },
 
-//     ] ,
-//   },
-//   { faculty: "Arts",
-//   courses: [
+  {
+    faculties: "Alied Health Science",
+    course: [
+      "Medical Laboratory Science",
+      "Nursing",
+      "Pharmacy",
+      "Sports Scince Unit",
+    ],
+  },
 
-//   ],
-//  },
+  {
+    faculties: "Engineering",
+    course: [
+      "Civil Engineering",
+      "Computer Engineering",
+      "Electrical & Electronic Engineering",
+      "Interdisciplinary Studies",
+    ],
+  },
 
-//   { faculty: "Engineering", courses: [] },
-//   { faculty: "Graduate Studies", courses: [] },
-//   { faculty: "Hindu Studies", courses: [] },
-//   { faculty: "Management Studies & Commerce", courses: [] },
-//   { faculty: "Medicine", courses: [] },
-//   {
-//     faculty: "Science",
-//      courses: [
-//         "Botany",
-//         "Chemistry",
-//         "Computer Science",
-//         "Fisheries Science",
-//         "Mathematics & Statistics",
-//         "Physics",
-//         "Zoology"
-//       ] ,
-//     },
-//   { faculty: "Technology", courses: [] },
-// ];
+  {
+    faculties: "Technologies",
+    course: [
+      "Engineering Technology",
+      "Bio Systems Technology",
+      "Interdisciplinary Studies",
+    ],
+  },
 
-export const hostels = ["Kondavil Female Hostel	", "Kondavil Male Hostel"];
+  {
+    faculties: "Agriculture",
+    course: [
+      "Agronomy",
+      "Animal Science",
+      "Agricultural Biology",
+      "Agricultural Chemistry",
+      "Agricultural Engineering",
+      "Agricultural Echonomics",
+    ],
+  },
+];
+
+export const hostels = [
+  "Kondavil Female Hostel	",
+  "Kondavil Male Hostel",
+  "Anandacoomaraswamy Female Hostel",
+  "Balasingam Hall Male Hostel",
+  "Kaithady Female Hostel",
+  "Kaithady Male Hostel",
+  "Medical Female Hostel",
+  "Male Hostel – I",
+  "Male Hostel – II",
+  "Male Hostel – III",
+  "Medical Male Hostel",
+  "New Female Hostel – I",
+  "New Female Hostel – II",
+  "RAFA Female Hostel",
+  "Female Hostel – I",
+  "Female Hostel – II",
+  "Female Hostel – III",
+  "None",
+];

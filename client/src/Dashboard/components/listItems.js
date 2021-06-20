@@ -19,7 +19,6 @@ export const MainListItems = () => {
   const [data, setData] = useState([]);
   const { role } = getFromStorage("the_main_app_role");
   const { workPlace } = getFromStorage("the_main_app_workPlace");
-  console.log(role, workPlace);
 
   useState(() => {
     axios
@@ -27,7 +26,7 @@ export const MainListItems = () => {
       .then((data) => setData(data.data.user));
     console.log(data);
   }, []);
-  // const storage1 = getFromStorage("the_main_app_workPlace");
+
   return (
     <div>
       {role === "admin" && workPlace === "welfare" && (
@@ -62,7 +61,7 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary="Hostels" />
           </ListItem>
-          <ListItem button component={Link} to={`${url}/feedback`}>
+          <ListItem button component={Link} to={`${url}/feedbacks`}>
             <ListItemIcon>
               <FeedbackIcon fontSize="small" />
             </ListItemIcon>
@@ -83,7 +82,7 @@ export const MainListItems = () => {
         </>
       )}
 
-      {role === "warden" && workPlace === "Kondavil Male Hostel" && (
+      {role === "warden" && workPlace === workPlace && (
         <>
           <ListItem button component={Link} to={url}>
             <ListItemIcon>
@@ -124,83 +123,7 @@ export const MainListItems = () => {
         </>
       )}
 
-      {role === "warden" && workPlace === "Kondavil Female Hostel" && (
-        <>
-          <ListItem button component={Link} to={url}>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary={role} />
-          </ListItem>
-          <ListItem button component={Link} to={url}>
-            <ListItemIcon>
-              <LocationOnIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary={workPlace} />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/applications`}>
-            <ListItemIcon>
-              <DescriptionIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Applications" />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/students`}>
-            <ListItemIcon>
-              <AssignmentIndIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Students" />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/Hostel`}>
-            <ListItemIcon>
-              <AssignmentIndIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Hostels" />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/feedback`}>
-            <ListItemIcon>
-              <FeedbackIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Feedbacks" />
-          </ListItem>
-        </>
-      )}
-
-      {role === "dean" && workPlace === "science" && (
-        <>
-          <ListItem button component={Link} to={url}>
-            <ListItemIcon>
-              <DashboardIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary={role} />
-          </ListItem>
-          <ListItem button component={Link} to={url}>
-            <ListItemIcon>
-              <LocationOnIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary={workPlace} />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/applications`}>
-            <ListItemIcon>
-              <DescriptionIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Applications" />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/students`}>
-            <ListItemIcon>
-              <AssignmentIndIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Students" />
-          </ListItem>
-          <ListItem button component={Link} to={`${url}/feedback`}>
-            <ListItemIcon>
-              <FeedbackIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Feedbacks" />
-          </ListItem>
-        </>
-      )}
-
-      {role === "dean" && workPlace === "arts" && (
+      {role === "dean" && workPlace === workPlace && (
         <>
           <ListItem button component={Link} to={url}>
             <ListItemIcon>

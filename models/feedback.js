@@ -31,6 +31,14 @@ const feedBackSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    reply: {
+      type: String,
+    },
+
+    isReplied: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamp: true,
