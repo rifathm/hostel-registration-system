@@ -45,9 +45,9 @@ class Main extends Component {
           <Route exact path="/">
             <Redirect exact from="/" to="dashboard" />
           </Route>
-          <Route path="*">
+          {/* <Route path="*">
             <Redirect from="/" to="dashboard" />
-          </Route>
+          </Route> */}
           <Route
             path="/map"
             render={(props) => <Map location={location} zoomLevel={15} />}
