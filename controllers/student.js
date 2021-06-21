@@ -1,13 +1,15 @@
 const Student = require("../models/student");
 const multer = require("multer");
+const express = require("Express");
+const router = express.Router();
 
 // define storage for image
 const storage = multer.diskStorage({
   // destination for files
-  destination: function (request, file, callback) {
-    callback(null, "../src/shared/Images");
+  destination: function (req, file, callback) {
+    callback(null, "../client/src/shared/Images");
   },
-  filename: function (request, file, callback) {
+  filename: function (req, file, callback) {
     callback(null, Date.now() + file.originalname);
   },
 });
@@ -18,6 +20,21 @@ const upload = multer({
   limits: {
     fieldSize: 512 * 512 * 3,
   },
+});
+
+//upload with image try
+
+router.post("/students", upload.single("img"), (req, res) => {
+  User.findById(req.params.id)
+    .then((student) => {
+      student.img = req.file.originalname;
+
+      user
+        .save()
+        .then(() => res.json("Succesfully updated User"))
+        .catch((err) => res.status(400).json(`ERROR: ${err}`));
+    })
+    .catch((err) => res.status(400).json(`ERROR: ${err}`));
 });
 
 const createStudent = async (req, res) => {

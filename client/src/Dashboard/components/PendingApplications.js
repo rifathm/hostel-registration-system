@@ -44,7 +44,7 @@ export default function PendingApplications() {
     if (role === ROLE.DEAN) {
       axios
         .get(
-          `/students?faculty=${workPlace}&isVerified=false&isVerifiedDean=false&isVerifiedWarden=false`
+          `/students?faculty=${workPlace}&isVerified=false&isVerifiedDean=false&isVerifiedWarden=false&year=4`
         )
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.WARDEN) {
@@ -55,10 +55,7 @@ export default function PendingApplications() {
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.ADMIN) {
       axios
-        .get(
-          `/students?isVerified=false&isVerifiedDean=true&isVerifiedWarden=true&state=true`
-        )
-
+        .get(`/students?isVerified=false&state=true&year=1`)
         .then((data) => setData(data.data.students));
     }
   }, []);
@@ -81,22 +78,11 @@ export default function PendingApplications() {
   const handleVerify = (_id) => {
     let query;
     if (role === ROLE.DEAN) {
-      if (data.year === "1") {
-        axios
-          .put(`/students/${_id}`, {
-            isVerifiedDean: true,
-            isVerifiedWarden: true,
-          })
-          .then(setData((data) => data.filter((datum) => datum._id !== _id)))
-          .catch(console.log("not verified"));
-        setAnchorEl(null);
-      } else {
-        axios
-          .put(`/students/${_id}`, { isVerifiedDean: true })
-          .then(setData((data) => data.filter((datum) => datum._id !== _id)))
-          .catch(console.log("not verified"));
-        setAnchorEl(null);
-      }
+      axios
+        .put(`/students/${_id}`, { isVerifiedDean: true })
+        .then(setData((data) => data.filter((datum) => datum._id !== _id)))
+        .catch(console.log("not verified"));
+      setAnchorEl(null);
     } else if (role === ROLE.WARDEN) {
       axios
         .put(`/students/${_id}`, { isVerifiedWarden: true })

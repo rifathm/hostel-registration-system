@@ -82,7 +82,6 @@ const schema = mongoose.Schema(
 
     preference: {
       type: String,
-      required: true,
     },
 
     year: {

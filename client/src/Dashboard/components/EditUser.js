@@ -31,9 +31,9 @@ class EditUser extends Component {
         workPlace: false,
         password: false,
       },
-      img: { preview: "", raw: "" },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    //this.changeOnClick = this.changeOnClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleImgUploadChange = this.handleImgUploadChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
@@ -54,6 +54,24 @@ class EditUser extends Component {
       });
     });
   }
+
+  // changeOnClick = (e) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+
+  //   formData.append("firstName", firstName);
+  //   formData.append("fullName", fullName);
+  //   formData.append("email", email);
+  //   formData.append("workPlace", workPlace);
+  //   formData.append("profile", fileName);
+
+  //   firstName("");
+  //   fullName("");
+  //   email("");
+  //   workPlace("");
+  //   profile("");
+  // };
 
   handleImgUploadChange(e) {
     if (e.target.files.length) {
@@ -78,6 +96,21 @@ class EditUser extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("firstName", this.firstName);
+    formData.append("fullName", this.fullName);
+    formData.append("email", this.email);
+    formData.append("workPlace", this.workPlace);
+    formData.append("profile", this.fileName);
+
+    this.firstName("");
+    this.fullName("");
+    this.email("");
+    this.workPlace("");
+    this.profile("");
+
     const { touched, ...values } = this.state;
     axios
       .put(`/user/${this.props.match.params.id}`, {
@@ -86,7 +119,7 @@ class EditUser extends Component {
       })
       .then(() => alert("successfully updated"))
       .then((res) => {
-        window.location = `/dashboard`;
+        window.location = `/dashboard/user`;
       })
       .catch((err) => alert(err));
 
@@ -113,7 +146,7 @@ class EditUser extends Component {
 
         <div className="row row-content">
           <div className="col-12">
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <div className="col-12">
                 <FormGroup row>
                   <Col md={8}>

@@ -30,7 +30,6 @@ class SelectHostel extends Component {
         course: false,
         selectedHostel: false,
       },
-      img: { preview: "", raw: "" },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -75,7 +74,7 @@ class SelectHostel extends Component {
 
       .then(() => alert("Hostel Selected"))
       .then((res) => {
-        window.location = `/dashboard`;
+        window.location = `/dashboard/Applications`;
       })
       .catch((err) => alert(err));
 
