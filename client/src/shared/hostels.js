@@ -8,7 +8,7 @@ export const HOSTELS = [
     tel: "021 222 2306",
     location: (
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.8134159005854!2d80.03307861461288!3d9.696960493059345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5443ecd5a3af%3A0xb3ec1e654dddf196!2sKondavil%20Hostel%20complex%20-%20University%20of%20Jaffna!5e0!3m2!1sen!2slk!4v1623502062699!5m2!1sen!2slk"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15834.085008058932!2d80.688171!3d7.18120295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfd7bcaf163bc3e6a!2sM.A.R%20STORES!5e0!3m2!1sen!2slk!4v1624202950229!5m2!1sen!2slk"
         width="600"
         height="450"
         style="border:0;"

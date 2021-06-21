@@ -51,7 +51,7 @@ export default function PendingApplications() {
     } else if (role === ROLE.ADMIN) {
       axios
         .get(
-          `/students?isVerified=true&isVerifiedDean=true&isVerifiedWarden=true&`
+          `/students?isVerified=true&isVerifiedDean=true&isVerifiedWarden=true`
         )
         .then((data) => setData(data.data.students));
     }

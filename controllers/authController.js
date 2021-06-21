@@ -1,6 +1,9 @@
+const express = require("express");
 const { connections } = require("mongoose");
 const User = require("../models/User");
 const UserSession = require("../models/UserSession");
+const multer = require("multer");
+const router = express.Router();
 
 //create Users
 const registerUser = async (req, res, next) => {
@@ -125,7 +128,7 @@ const getUser = async (req, res) => {
   }
 };
 
-//Update User Info
+// //Update User Info
 const updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(

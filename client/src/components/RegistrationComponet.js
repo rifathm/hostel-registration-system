@@ -56,6 +56,7 @@ class Registration extends Component {
       policeStation: "",
       agree: false,
       preference: "N/A",
+      img: "",
       touched: {
         fullName: false,
         surName: false,
@@ -75,8 +76,9 @@ class Registration extends Component {
         residentalAddress2: false,
         phoneNo: false,
         policeStation: false,
+        img: false,
       },
-      img: { preview: "", raw: "" },
+      //img: { preview: "", raw: "" },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -110,8 +112,9 @@ class Registration extends Component {
     axios
       .post("/students", values)
 
+      .then(() => alert("Your Apllication has been sent to verification"))
       .then((res) => {
-        window.location = `/ViewStudent/${res.data.data._id}`;
+        window.location = `/create-pdf/${res.data._id}`;
         console.log(res.data.data._id);
       })
 
