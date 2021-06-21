@@ -5,7 +5,7 @@ const Map = ({ location }) => {
   return (
     <iframe
       src={location}
-      width="600"
+      width="250"
       height="300"
       frameBorder="0"
       style={{ border: "0" }}
@@ -15,5 +15,6 @@ const Map = ({ location }) => {
     ></iframe>
   );
 };
+
 
 export default Map;
