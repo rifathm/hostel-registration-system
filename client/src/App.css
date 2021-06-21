@@ -1,3 +1,7 @@
+* {
+  font-family: cursive;
+}
+
 .row-header {
   margin: 0px auto;
   padding: 0px auto;
@@ -11,15 +15,63 @@
 }
 
 .footer {
-  background-color: #cadfe2;
+  background-image: url("./images/footerbg.gif");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  color: white;
   margin: 0px auto;
   padding: 20px 0px 20px 0px;
 }
 .jumbotron {
-  padding: 30px 70px 30px 70px;
+  padding: 15px 70px 15px 70px;
   margin: 0px auto;
-  background: #cadfe2;
+  background: whitesmoke;
   color: black;
+}
+.bg{
+  background-image: url("./images/bg.gif");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.aboutus{
+  color: white;
+  background-image: url("./images/aboutusbg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+
+.registrationform{
+  color: white;
+  background-image: url("./images/uoj.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.contactform{
+  color: white;
+  background-image: url("./images/jaffna-university.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.guide{
+  color: white;
+  background-image: url("./images/guide.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.location{
+  color: white;
 }
 
 address {
@@ -31,17 +83,16 @@ address {
 .navbar-dark {
   background-color: black;
 }
+.text-black{
+  color: black;
+}
 
 .carousel {
   margin: 2px auto;
 }
 .carousel .carousel-item {
+ 
 }
 .carousel .carousel-item img {
-  height: 100% !important;
-  object-fit: contain;
-  display: none;
-}
-* {
-  font-family: cursive;
+  
 }
