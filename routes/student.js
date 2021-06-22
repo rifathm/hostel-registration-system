@@ -10,6 +10,7 @@ const {
   getStudents,
   getStudent,
   updateStudent,
+  patchStudent,
   upload,
 } = require("../controllers/student");
 
@@ -27,5 +28,6 @@ router.post(
 );
 router.delete("/ :id", deleteStudent);
 router.put("/:id", updateStudent);
+router.patch("/:id", patchStudent);
 
 module.exports = router;

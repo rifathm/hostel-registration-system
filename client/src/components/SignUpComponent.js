@@ -50,32 +50,6 @@ class SignUpCom extends Component {
     this.onSignUp = this.onSignUp.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-  // componentDidMount() {
-  //   const obj = getFromStorage("the_main_app");
-
-  //   if (obj && obj.token) {
-  //     const { token } = obj;
-  //     //verify token
-  //     fetch("/verify?token=" + token)
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         if (json.success) {
-  //           this.setState({
-  //             token,
-  //             isLoading: "false",
-  //           });
-  //         } else {
-  //           this.setState({
-  //             isLoading: false,
-  //           });
-  //         }
-  //       });
-  //   } else {
-  //     this.setState({
-  //       isLoading: false,
-  //     });
-  //   }
-  // }
 
   onTextboxChangeSignUpEmail(event) {
     this.setState({

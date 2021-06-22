@@ -46,7 +46,7 @@ export default function PendingApplications() {
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.WARDEN) {
       axios
-        .get(`/students?selectedHostel=${workPlace}&isVerifiedWarden=true&`)
+        .get(`/students?selectedHostel=${workPlace}&`)
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.ADMIN) {
       axios

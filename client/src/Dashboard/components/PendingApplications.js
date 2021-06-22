@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PendingApplications() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [dataX, setDataX] = useState([]);
   const { workPlace } = getFromStorage("the_main_app_workPlace");
   const { role } = getFromStorage("the_main_app_role");
 
@@ -55,8 +56,13 @@ export default function PendingApplications() {
         .then((data) => setData(data.data.students));
     } else if (role === ROLE.ADMIN) {
       axios
-        .get(`/students?isVerified=false&state=true&year=1`)
+        .get(
+          `/students?isVerified=false&isVerifiedDean=true&isVerifiedWarden=true&`
+        )
         .then((data) => setData(data.data.students));
+      axios
+        .get(`/students?isVerified=false&year=1`)
+        .then((data) => setDataX(data.data.students));
     }
   }, []);
 
@@ -164,66 +170,67 @@ export default function PendingApplications() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((datum) => (
-              <TableRow key={datum._id}>
-                <TableCell>{datum.regNo}</TableCell>
-                <TableCell>{datum.fullName}</TableCell>
-                <TableCell>{datum.faculty}</TableCell>
-                <TableCell>{datum.preference}</TableCell>
-                <TableCell>{datum.year}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="contained"
-                    href={`select-hostel/${datum._id}/`}
-                    color="primary"
-                  >
-                    Select
-                  </Button>
-                </TableCell>
-                <TableCell align="right">
-                  <div className={classes.root}>
-                    <div>
-                      <Button
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleMenu}
-                        variant="outlined"
-                        color="primary"
-                      >
-                        Details
-                      </Button>
-                      <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                          vertical: "top",
-                          horizontal: "right",
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                          vertical: "top",
-                          horizontal: "right",
-                        }}
-                        open={open}
-                        onClose={handleClose}
-                      >
-                        <MenuItem onClick={() => handleVerify(datum._id)}>
-                          <a>Approve</a>
-                        </MenuItem>
-                        <MenuItem onClick={() => handleReject(datum._id)}>
-                          <a>Reject</a>
-                        </MenuItem>
-                        <MenuItem onClick={handleMenu}> View Details</MenuItem>
-                        <MenuItem onClick={() => handleDelete(datum._id)}>
-                          Delete
-                        </MenuItem>
-                      </Menu>
+            {data &&
+              data.map((datum) => (
+                <TableRow key={datum._id}>
+                  <TableCell>{datum.regNo}</TableCell>
+                  <TableCell>{datum.fullName}</TableCell>
+                  <TableCell>{datum.faculty}</TableCell>
+                  <TableCell>{datum.preference}</TableCell>
+                  <TableCell>{datum.year}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      href={`select-hostel/${datum._id}/`}
+                      color="primary"
+                    >
+                      Select
+                    </Button>
+                  </TableCell>
+                  <TableCell align="right">
+                    <div className={classes.root}>
+                      <div>
+                        <Button
+                          aria-label="account of current user"
+                          aria-controls="menu-appbar"
+                          aria-haspopup="true"
+                          onClick={handleMenu}
+                          variant="outlined"
+                          color="primary"
+                        >
+                          Details
+                        </Button>
+                        <Menu
+                          id="menu-appbar"
+                          anchorEl={anchorEl}
+                          anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                          }}
+                          keepMounted
+                          transformOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                          }}
+                          open={open}
+                          onClose={handleClose}
+                        >
+                          <MenuItem onClick={() => handleReject(datum._id)}>
+                            <a>Reject</a>
+                          </MenuItem>
+                          <MenuItem onClick={handleMenu}>
+                            {" "}
+                            View Details
+                          </MenuItem>
+                          <MenuItem onClick={() => handleDelete(datum._id)}>
+                            Delete
+                          </MenuItem>
+                        </Menu>
+                      </div>
                     </div>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
         <div className={classes.seeMore}>

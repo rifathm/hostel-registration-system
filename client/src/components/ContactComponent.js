@@ -129,7 +129,10 @@ class Contact extends Component {
                 <h3>Location Information</h3>
               </div>
 
-              <div className="col-12 col-sm-4 offset-sm-1 " style={{ background: "#c9dbdc" }}>
+              <div
+                className="col-12 col-sm-4 offset-sm-1 "
+                style={{ background: "#c9dbdc" }}
+              >
                 <h5>Address</h5>
                 <address>
                   No x, Nachchimar Road
@@ -142,9 +145,7 @@ class Contact extends Component {
                   <i className="fa fa-fax"></i>: 0211234567
                   <br />
                   <i className="fa fa-envelope"></i>:{" "}
-                  <a href="mailto:admin@univ.jfn.ac.lk">
-                    admin@univ.jfn.ac.lk
-                  </a>
+                  <a href="mailto:admin@univ.jfn.ac.lk">admin@univ.jfn.ac.lk</a>
                 </address>
               </div>
 
@@ -313,7 +314,6 @@ class Contact extends Component {
           </div>
         </div>
       </Layout>
-
     );
   }
 }

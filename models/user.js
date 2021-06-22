@@ -35,10 +35,6 @@ const UserSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    profile: {
-      type: String,
-      required: true,
-    },
   },
   {
     timestamp: true,

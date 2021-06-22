@@ -2,6 +2,7 @@ const Student = require("../models/student");
 const multer = require("multer");
 const express = require("Express");
 const router = express.Router();
+const { sendMail } = require("../services/mail");
 
 // define storage for image
 const storage = multer.diskStorage({
@@ -102,11 +103,47 @@ const updateStudent = async (req, res) => {
   }
 };
 
+const patchStudent = async (req, res) => {
+  console.log(req.body);
+  try {
+    const students = await Student.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          ...req.body,
+        },
+      },
+      { new: true }
+    ).then((student) => {
+      sendMail({
+        to: "rifadhmuhammadh96@gmail.com",
+        subject: "Your Application has approved",
+        text: "bar",
+        html: `<p>Dear ${student.surName},<br/><br/>
+        <pre>This email is to confirm that your application for hostel has been approved.Further details are listed below.
+
+        Hostel:${student.selectedHostel}
+        
+        
+        If you need to make any  changes or any inquiries , Contact us via our website[<a href="http://localhost:3000/contact"></a>].
+        
+        Thanks
+        Welfare Society,
+        University of Jaffna.</pre>`,
+      });
+    });
+    res.status(200).json({ msg: `Succesfully updated Student.`, students });
+  } catch (err) {
+    res.status(400).json({ msg: `ERROR: ${err}` });
+  }
+};
+
 module.exports = {
   getStudents,
   getStudent,
   createStudent,
   deleteStudent,
   updateStudent,
+  patchStudent,
   upload,
 };

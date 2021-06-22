@@ -22,6 +22,7 @@ class SelectHostel extends Component {
       faculty: "",
       course: "",
       selectedHostel: "",
+      email: "",
 
       touched: {
         fullName: false,
@@ -29,6 +30,7 @@ class SelectHostel extends Component {
         faculty: false,
         course: false,
         selectedHostel: false,
+        email: false,
       },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,12 +40,14 @@ class SelectHostel extends Component {
 
   componentDidMount() {
     axios.get(`/students/${this.props.match.params.id}`).then(({ data }) => {
-      const { fullName, regNo, faculty, course, selectedHostel } = data.student;
+      const { fullName, regNo, faculty, course, selectedHostel, email } =
+        data.student;
       this.setState({
         fullName,
         regNo,
         faculty,
         course,
+        email,
         selectedHostel,
       });
     });
@@ -61,16 +65,10 @@ class SelectHostel extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { touched, ...values } = this.state;
+    const { selectedHostel } = this.state;
+    const data = { isVerified: true, selectedHostel };
     axios
-      .put(
-        `/students/${this.props.match.params.id}`,
-        {
-          _id: this.props.match.params.id,
-          ...values,
-        },
-        { isVerified: true }
-      )
+      .patch(`/students/${this.props.match.params.id}`, data)
 
       .then(() => alert("Hostel Selected"))
       .then((res) => {
@@ -143,6 +141,16 @@ class SelectHostel extends Component {
                       name="course"
                       value={this.state.course}
                       onBlur={this.handleBlur("course")}
+                    />
+
+                    <Label htmlFor="email">
+                      <strong>EMAIL</strong>
+                    </Label>
+                    <Input
+                      type="text"
+                      name="email"
+                      value={this.state.email}
+                      onBlur={this.handleBlur("email")}
                     />
                     <Label htmlFor="selectedHostel">
                       <strong>SELECT A HOSTEL</strong>

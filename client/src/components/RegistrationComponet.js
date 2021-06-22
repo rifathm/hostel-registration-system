@@ -17,19 +17,7 @@ import axios from "axios";
 import "../App.css";
 import Layout from "./Layout";
 
-import {
-  districts,
-  faculties,
-  hostels,
-  GSDivisions,
-  DSDivisions,
-} from "../utils/data";
-
-const places = {
-  district: districts,
-  // GSdivision: GSdivisions,
-  DSdivision: DSDivisions,
-};
+import { districts, faculties, hostels } from "../utils/data";
 
 class Registration extends Component {
   constructor(props) {
@@ -44,10 +32,10 @@ class Registration extends Component {
       sex: "N/A",
       residentalAddress: "",
       medicalIssues: "",
-      district: "",
+      district: districts[0].district,
       year: "N/A",
       GSdivision: "",
-      DSdivision: "N/A",
+      DSdivision: districts[0].division[0].DSDivision,
       course: "N/A",
       regNo: "",
       faculty: "N/A",
@@ -221,10 +209,14 @@ class Registration extends Component {
 
             <div className="row row-content ">
               <div className="col-12">
-                <Form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+                <Form
+                  onSubmit={this.handleSubmit}
+                  enctype="multipart/form-data"
+                >
                   <div className="col-12">
                     <p>
-                      <strong>HOSTEL REGISTRATION FORM .</strong>Student Particulars
+                      <strong>HOSTEL REGISTRATION FORM .</strong>Student
+                      Particulars
                     </p>
                     <p>
                       <strong>1.Please fill in BLOCK LETTERS</strong>
@@ -294,7 +286,10 @@ class Registration extends Component {
                           </Card>
                         )}
 
-                        <label htmlFor="upload-button" className="btn btn-warning">
+                        <label
+                          htmlFor="upload-button"
+                          className="btn btn-warning"
+                        >
                           Upload
                         </label>
                         <input
@@ -318,11 +313,13 @@ class Registration extends Component {
                           value={this.state.district}
                           onChange={this.handleInputChange}
                         >
-                          {districts.map((option) => (
-                            <option key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
+                          {districts
+                            .map(({ district }) => district)
+                            .map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
                         </Input>
                       </Col>
 
@@ -338,11 +335,16 @@ class Registration extends Component {
                           onChange={this.handleInputChange}
                           value={this.state.DSdivision}
                         >
-                          {districts.map((option) => (
-                            <option key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
+                          {districts
+                            .find(
+                              ({ district }) => district === this.state.district
+                            )
+                            .division.map(({ DSDivision }) => DSDivision)
+                            .map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
                         </Input>
                       </Col>
 
@@ -351,14 +353,26 @@ class Registration extends Component {
                           <strong>GS DIVISION</strong>
                         </Label>
                         <Input
-                          type="text"
+                          type="select"
                           id="GSdivision"
                           name="GSdivision"
-                          placeholder="GS DIVISION"
-                          value={this.state.GSdivision}
-                          onBlur={this.handleBlur("GSdivision")}
                           onChange={this.handleInputChange}
-                        />
+                          value={this.state.GSdivision}
+                        >
+                          {districts
+                            .find(
+                              ({ district }) => district === this.state.district
+                            )
+                            .division.find(
+                              ({ DSDivision }) =>
+                                DSDivision === this.state.DSdivision
+                            )
+                            .GSDivisions.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                        </Input>
                       </Col>
                     </FormGroup>
                     <FormGroup row>
@@ -544,7 +558,8 @@ class Registration extends Component {
                             Alignments
                           </strong>
                           <br />
-                          If yes , please state briefly & Attach Medical Certificate
+                          If yes , please state briefly & Attach Medical
+                          Certificate
                         </Label>
                         <Input
                           type="text"
@@ -651,91 +666,101 @@ class Registration extends Component {
                       <FormGroup row>
                         <p
                           className="overflow-auto"
-                          style={{ height: "200px", background: "#c9dbdc", color: "black" }}
+                          style={{
+                            height: "200px",
+                            background: "#c9dbdc",
+                            color: "black",
+                          }}
                         >
                           <strong>GENERAL CONDITIONS FOR ACCOMMODATION</strong>
                           <br />
                           <strong>A. Order of Priority:</strong>
-                          <br /> First year students and Fourth Year students who
-                          are from outside the Jaffna District will be considered
-                          for accommodation.
+                          <br /> First year students and Fourth Year students
+                          who are from outside the Jaffna District will be
+                          considered for accommodation.
                           <br />
                           <br /> <strong>B. Period of Accommodation:</strong>
-                          <br /> Students will be given accommodation for a maximum
-                          of One Year at a time.
+                          <br /> Students will be given accommodation for a
+                          maximum of One Year at a time.
                           <br />
                           <br />{" "}
-                          <strong>C. Rules and regulations in of the Hostel</strong>
+                          <strong>
+                            C. Rules and regulations in of the Hostel
+                          </strong>
                           <br />
                           1. Ragging is strictly prohibited inside the hostel
                           premises.
-                          <br /> 2. The students should be respectfully dressed on
-                          leaving the room for any purpose.
+                          <br /> 2. The students should be respectfully dressed
+                          on leaving the room for any purpose.
                           <br /> 3. The students themselves are personally
-                          responsible to safeguard their belongings. Any theft of
-                          Laptop, mobile phone, computer, purse, calculator,
-                          wristwatch, wallet or any other valuable item is the sole
-                          responsibility of the student.
+                          responsible to safeguard their belongings. Any theft
+                          of Laptop, mobile phone, computer, purse, calculator,
+                          wristwatch, wallet or any other valuable item is the
+                          sole responsibility of the student.
                           <br />
                           4. Students, in their own interest, are advised not to
-                          keep excess cash or any valuables in their hostel rooms.
-                          They are cautioned to be very careful about safety of
-                          their belongings. They should close their rooms securely
-                          when they leave the room even for short periods or when
-                          they are sleeping. Institute shall not be responsible for
-                          the loss of such items due to theft or otherwise. However,
-                          in the case of theft, the matter should be immediately
-                          reported to the concerned Sub-Warden/Warden of the Hostel.
+                          keep excess cash or any valuables in their hostel
+                          rooms. They are cautioned to be very careful about
+                          safety of their belongings. They should close their
+                          rooms securely when they leave the room even for short
+                          periods or when they are sleeping. Institute shall not
+                          be responsible for the loss of such items due to theft
+                          or otherwise. However, in the case of theft, the
+                          matter should be immediately reported to the concerned
+                          Sub-Warden/Warden of the Hostel.
                           <br />
                           5. Students are prohibited from giving shelter to any
                           other student/outsider in the rooms. In case of any
                           unauthorized shelter, the student will be liable to
                           disciplinary action.
-                          <br /> 6. Resident students are not permitted to invite
-                          any outside person to address any meeting in the hostel
-                          without written permission of the Warden/Dean.
-                          <br /> 7. Students are expected to switch off the lights
-                          and fans in their rooms every time they go out and take
-                          precautions to economies electricity consumption. The
-                          students are not permitted to use any private electrical
-                          appliances and other similar appliances are prohibited.
-                          Boarders are warned against tempering with electric
-                          installation and for all electric repairs the electrician
-                          should be called in.
-                          <br /> 8. Student should not drive nails, screws etc. into
-                          the wall or doors. No repair shall be done by the students
-                          themselves. They should approach the Sub Warden who will
-                          arrange for repairs.
+                          <br /> 6. Resident students are not permitted to
+                          invite any outside person to address any meeting in
+                          the hostel without written permission of the
+                          Warden/Dean.
+                          <br /> 7. Students are expected to switch off the
+                          lights and fans in their rooms every time they go out
+                          and take precautions to economies electricity
+                          consumption. The students are not permitted to use any
+                          private electrical appliances and other similar
+                          appliances are prohibited. Boarders are warned against
+                          tempering with electric installation and for all
+                          electric repairs the electrician should be called in.
+                          <br /> 8. Student should not drive nails, screws etc.
+                          into the wall or doors. No repair shall be done by the
+                          students themselves. They should approach the Sub
+                          Warden who will arrange for repairs.
                           <br /> 9. Male students are strictly forbidden from
                           entering the Girls' Hostel and female students from
                           entering Boy’s Hostel.
-                          <br /> 10.Students are strictly prohibited from consuming
-                          alcoholic drinks, drugs, cigarettes, tobacco products or
-                          any other intoxicants or any form of smoking, inside the
-                          hostel or to enter the hostel after consuming the same.
-                          Any student found consuming such thing or in a drunken
-                          state in the hostel will render himself liable for strict
-                          disciplinary action, including expulsion/ rustication from
-                          Hostel/Faculty.
-                          <br /> 11.Any form of creating sound pollution including
-                          playing music loudly is not allowed. Any celebration will
-                          be treated as illegal and any action may be initiated
-                          against him.
-                          <br /> 12.Every student shall keep the room allotted to
-                          him / her clean and neat. He / She shall take proper care
-                          of the furniture and fixtures handed over to him / her.
-                          The hostel authorities have the right to enter and inspect
-                          the rooms at any time, even in the absence of students.
-                          <br /> 13.Students should not use abusive/foul language.
-                          <br /> 14.Any combined activities should be held in the
-                          open space with the permission of the Wardens and
-                          Assistant Registrar / Welfare Services through respective
-                          Sub Wardens.
-                          <br /> 15.Drinking water should be used only for drinking
-                          purposes.
-                          <br /> 16.All wastes including sanitary pads and left over
-                          food should be disposed in containers kept for the
-                          specific purpose and they should not be thrown
+                          <br /> 10.Students are strictly prohibited from
+                          consuming alcoholic drinks, drugs, cigarettes, tobacco
+                          products or any other intoxicants or any form of
+                          smoking, inside the hostel or to enter the hostel
+                          after consuming the same. Any student found consuming
+                          such thing or in a drunken state in the hostel will
+                          render himself liable for strict disciplinary action,
+                          including expulsion/ rustication from Hostel/Faculty.
+                          <br /> 11.Any form of creating sound pollution
+                          including playing music loudly is not allowed. Any
+                          celebration will be treated as illegal and any action
+                          may be initiated against him.
+                          <br /> 12.Every student shall keep the room allotted
+                          to him / her clean and neat. He / She shall take
+                          proper care of the furniture and fixtures handed over
+                          to him / her. The hostel authorities have the right to
+                          enter and inspect the rooms at any time, even in the
+                          absence of students.
+                          <br /> 13.Students should not use abusive/foul
+                          language.
+                          <br /> 14.Any combined activities should be held in
+                          the open space with the permission of the Wardens and
+                          Assistant Registrar / Welfare Services through
+                          respective Sub Wardens.
+                          <br /> 15.Drinking water should be used only for
+                          drinking purposes.
+                          <br /> 16.All wastes including sanitary pads and left
+                          over food should be disposed in containers kept for
+                          the specific purpose and they should not be thrown
                           indiscriminately all over the hostel leading to un –
                           hygienic consequences and blocking of the waste water
                           channels.
@@ -745,31 +770,32 @@ class Registration extends Component {
                           </strong>
                           <br />
                           1. Rough handling of room furniture or any furniture /
-                          property or fittings of the hostel is strictly forbidden.{" "}
-                          <br />
-                          2. The cost of damages will be recovered in the following
-                          manner: <br />
+                          property or fittings of the hostel is strictly
+                          forbidden. <br />
+                          2. The cost of damages will be recovered in the
+                          following manner: <br />
                           <li>
                             {" "}
-                            If any individual or group is identified to have caused
-                            the damage, double the cost will be recovered from
-                            him/her/group.
+                            If any individual or group is identified to have
+                            caused the damage, double the cost will be recovered
+                            from him/her/group.
                           </li>
                           <br />{" "}
                           <li>
                             If damage is done in anyone of the rooms and the
-                            person(s) is / are not identified then double the cost
-                            will be recovered from the room-mates collectively.
+                            person(s) is / are not identified then double the
+                            cost will be recovered from the room-mates
+                            collectively.
                             <br />
                           </li>
                           <li>
-                            If a damage is done outside the rooms i.e., in common
-                            places like corridors, bathrooms, lecture halls, canteen
-                            etc., and the person(s) is/ are not identified, then
-                            double the cost will be recovered, floor wise or block
-                            wise or on the whole, as the case may be. Repetition of
-                            damage to the hostel property will result in expulsion
-                            from the hostel.
+                            If a damage is done outside the rooms i.e., in
+                            common places like corridors, bathrooms, lecture
+                            halls, canteen etc., and the person(s) is/ are not
+                            identified, then double the cost will be recovered,
+                            floor wise or block wise or on the whole, as the
+                            case may be. Repetition of damage to the hostel
+                            property will result in expulsion from the hostel.
                           </li>
                         </p>
                       </FormGroup>
@@ -792,10 +818,11 @@ class Registration extends Component {
                             <strong>
                               {" "}
                               I have read all the rules and regulations of the
-                              hostel annexed with this application form care fully.
-                              I hereby agree to abide by the rules and regulations
-                              of the hostel in force from time to time.I am liable
-                              for dicipilinary action in case of any breach.
+                              hostel annexed with this application form care
+                              fully. I hereby agree to abide by the rules and
+                              regulations of the hostel in force from time to
+                              time.I am liable for dicipilinary action in case
+                              of any breach.
                             </strong>
                           </Label>
                         </FormGroup>
