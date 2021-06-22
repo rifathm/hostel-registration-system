@@ -46,7 +46,7 @@ class Location extends Component {
             <div className="row">
               <Breadcrumb>
                 <BreadcrumbItem>
-                  <Link to="/home">Home</Link>
+                  <Link to="/">Home</Link>
                 </BreadcrumbItem>
                 <BreadcrumbItem active>Guidelines</BreadcrumbItem>
               </Breadcrumb>
@@ -84,7 +84,7 @@ class Location extends Component {
                           </div>
 
                           <div className=" col-md-4">
-                            <Map location={hostel.location} />
+                            <Map location={hostel.src} />
                           </div>
                         </div>
                       </CardBody>

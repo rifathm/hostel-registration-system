@@ -25,7 +25,7 @@ class Home extends Component {
               <div className="col-12 col-md-4 offset-1 ">
                 <img src="assets/images/hostel.jpg" alt="hostel" />
               </div>
-              <div className="col-12 col-md-6 ">
+              <div className="col-12 col-md-6 offset-1">
                 <h2>STUDENT ACCOMMODATION</h2>
                 <p>
                   Several student hostels are available which are administrated by
