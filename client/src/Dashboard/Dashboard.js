@@ -27,6 +27,7 @@ import Users from "./views/Users";
 import Settings from "./views/Settings";
 import { Paper, Grid } from "@material-ui/core";
 import PendingApplications from "./components/PendingApplications";
+import Pending from "./views/Applications";
 import Statics from "./components/UserStatics";
 import Chart from "./components/StudentsStatics";
 import Hostel from "./components/HostelStatics";
@@ -285,6 +286,7 @@ const Dashboard = ({ history }) => {
             <Route path={`${path}/hostel/edit`} component={EditHostel} />
             <Route path={`${path}/students`} component={Students} />
             <Route path={`${path}/applications`} component={Applications} />
+            <Route path={`${path}/application1`} component={Pending} />
             <Route path={`${path}/Hostel`} component={Hostels} />
             <Route path={`${path}/profile/:id`} component={EditProfile} />
             <Route path={`${path}/hosteledit/:id`} component={EditHostel} />

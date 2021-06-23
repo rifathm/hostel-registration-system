@@ -60,9 +60,6 @@ export default function PendingApplications() {
           `/students?isVerified=false&isVerifiedDean=true&isVerifiedWarden=true&`
         )
         .then((data) => setData(data.data.students));
-      axios
-        .get(`/students?isVerified=false&year=1`)
-        .then((data) => setDataX(data.data.students));
     }
   }, []);
 

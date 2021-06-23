@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import Layout from "./Layout";
 import axios from "axios";
 import "../App.css";
-import Map from "./Map";
 
 class Contact extends Component {
   constructor(props) {
@@ -116,7 +115,7 @@ class Contact extends Component {
             <div className="row">
               <Breadcrumb>
                 <BreadcrumbItem>
-                  <Link to="/">Home</Link>
+                  <Link to="/home">Home</Link>
                 </BreadcrumbItem>
                 <BreadcrumbItem active>Contact Us</BreadcrumbItem>
               </Breadcrumb>
@@ -130,14 +129,10 @@ class Contact extends Component {
                 <h3>Location Information</h3>
               </div>
 
-<<<<<<< HEAD
               <div
                 className="col-12 col-sm-4 offset-sm-1 "
                 style={{ background: "#c9dbdc" }}
               >
-=======
-              <div className="col-12 col-sm-4 " style={{ background: "#c9dbdc" }}>
->>>>>>> 29a04f044f06adf9fce88a3ca5269011b96ea3e3
                 <h5>Address</h5>
                 <address>
                   No x, Nachchimar Road
@@ -155,9 +150,7 @@ class Contact extends Component {
               </div>
 
               <div className="col-12 col-sm-6 offset-sm-1">
-                <h5>Map of our Location
-                  -Student Welfare Division</h5>
-                <Map location={"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.8134159005854!2d80.03307861461288!3d9.696960493059345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5443ecd5a3af%3A0xb3ec1e654dddf196!2sKondavil%20Hostel%20complex%20-%20University%20of%20Jaffna!5e0!3m2!1sen!2slk!4v1623502062699!5m2!1sen!2slk"} />
+                <h5>Map of our Location-Student Welfare Division</h5>
               </div>
               <div className="col-12 col-sm-11 offset-sm-1">
                 <div className="btn-group" role="group">

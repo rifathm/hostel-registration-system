@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PendingApplications() {
+export default function PendingApplicationsFirst() {
   const classes = useStyles();
   const [data, setData] = useState([]);
 

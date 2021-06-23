@@ -96,7 +96,7 @@ export const MainListItems = () => {
             </ListItemIcon>
             <ListItemText primary={workPlace} />
           </ListItem>
-          <ListItem button component={Link} to={`${url}/applications`}>
+          <ListItem button component={Link} to={`${url}/o`}>
             <ListItemIcon>
               <DescriptionIcon fontSize="small" />
             </ListItemIcon>

@@ -122,7 +122,7 @@ const patchStudent = async (req, res) => {
         html: `<p>Dear ${student.surName},<br/><br/>
         <pre>This email is to confirm that your application for hostel has been approved.Further details are listed below.
 
-        Hostel:${student.selectedHostel}
+       Selected Hostel:${student.selectedHostel}
         
         
         If you need to make any  changes or any inquiries , Contact us via our website[<a href="http://localhost:3000/contact"></a>].
